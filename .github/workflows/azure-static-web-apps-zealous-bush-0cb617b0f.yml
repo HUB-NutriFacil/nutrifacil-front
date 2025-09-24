@@ -40,13 +40,12 @@ jobs:
         run: npm run build
 
       # 5. Gera ID Token para OIDC (corrigido)
-      - name: Deploy to Azure Static Web Apps
-        uses: Azure/static-web-apps-deploy@v1
+      - name: Get Id Token
+        id: idtoken
+        uses: actions/github-script@v6
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ZEALOUS_BUSH_0CB617B0F }}
-          action: "upload"
-          app_location: "build"
-          api_location: ""
+          script: return await core.getIDToken()
+          result-encoding: string
 
       # 6. Deploy via OIDC
       - name: Deploy to Azure Static Web Apps
