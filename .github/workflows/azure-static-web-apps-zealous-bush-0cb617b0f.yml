@@ -45,8 +45,8 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const core = require('@actions/core')
-            return core.getIDToken()
+            const core = require('@actions/core');
+            return core.getIDToken();
           result-encoding: string
 
       # 6. Deploy via OIDC
