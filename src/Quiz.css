@@ -1,0 +1,579 @@
+
+
+#divhomepai {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.divlogo {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 0; 
+    margin-left: 0;
+}
+.logo {
+  width: 200px;
+  height: 80px;
+  object-fit: cover;
+}
+.botaosexomen {
+  width: 150px;
+  height: 250px;
+  background: linear-gradient(to top, #00f2b0 17%, #ffffff 17%);
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.botaosexwoman {
+  width: 150px;
+  height: 250px;
+  background: linear-gradient(to top, #00f2b0 17%, #ffffff 17%);
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+  cursor: pointer;
+  padding: 8px;
+}
+
+#divbotao {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#divbotao button {
+  margin: 5px;
+}
+
+#divbotao > div {
+  display: flex;
+  gap: 16px;
+}
+
+#divheadline {
+  width: 100%;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+#divheadline h2,
+#divheadline h3 {
+    margin: 0.5rem 0;
+}
+
+.pessoabotao {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+.textobotao {
+    font-size: 20px;
+    color: #000000;
+    text-align: center;
+    margin-right: 5px;
+    font-weight: bold;
+}
+.linha-botao{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.iconseta{
+    color: #000000;
+    font-size: 18px;
+}
+.Titulo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+    font-size: 30px;
+    color: #000000;
+    text-align: center;
+}
+.tempo{
+    background-color: #00f2b0;
+    width: 180px;
+    height: 30px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    align-self: center;
+    border-radius: 50px;
+    padding: 0px 10px 4px;
+}
+.barrinha{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.textoexp{
+  width: 95%;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;;
+}
+.explicacao{
+  font-size: 24px;
+  border-left: solid 4px #00f2b0;
+  width: 75%;
+  padding: 0px 0px 0px 3px;
+}
+.linhaexp{
+  display: flex;
+  align-items: right;
+  justify-content: right;
+  align-items: center;
+}
+.gift{
+  width: 90px;
+  height: 70px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+.explicacao2{
+  margin-top: -10px;
+}
+.rodape{
+  align-items: center;
+  display: flex;
+  font-size: 10px;
+  color: #8b8b8b;
+  justify-content: center;
+  margin-top: 50px;
+}
+/*fim da home page*/
+
+.divlogocentral{
+  width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.logocentral{
+  width: 200px;
+  height: 80px;
+  object-fit: cover;
+}
+.titulonrml{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+  font-size: 22px;
+  color: #000000;
+  text-align: center;
+  margin-top: 20px;
+}
+.dietabtns{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+.btndieta {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items:baseline;
+  padding: 15px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  cursor: pointer;
+  text-align: left;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.titulo-dieta {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.descricao-dieta {
+  font-size: 14px;
+  color: #666;
+}
+.imagemdieta{
+  width: 100px;
+  height: 100px;
+}
+.tituloedesc{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.desctitu{
+  border-left: solid 3px #00f2b0;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding-left: 5px;
+}
+.titulo-dieta {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+.b1c1{
+  width: 50px;
+    height: 10px;
+   background: linear-gradient(to right, #00f2b0 100%, #ffffff 0%);
+    border-radius: 3px;
+    margin: 0px 5px 0px 0px;
+     border: solid 2px #00f2b0;
+}
+
+/* TODOS OS TIPOS DE BARRINHAS*/
+.b1{
+    width: 50px;
+    height: 10px;
+   background: linear-gradient(to right, #00f2b0 50%, #ffffff 50%);
+    border-radius: 3px;
+    margin: 0px 5px 0px 0px;
+     border: solid 2px #00f2b0;
+}
+.b2{
+    width: 50px;
+    height: 10px;
+    background: linear-gradient(to right, #00f2b0 0, #ffffff 0);
+    border-radius: 3px;
+    margin: 0px 5px 0px 0px;
+     border: solid 2px #00f2b0;
+}
+.b3{
+    width: 50px;
+    height: 10px;
+    background: linear-gradient(to right, #00f2b0 0, #ffffff 0);
+    border-radius: 3px;
+    margin: 0px 5px 0px 0px;
+     border: solid 2px #00f2b0;
+}
+.b4{
+    width: 50px;
+    height: 10px;
+    border: solid 2px #00f2b0;
+    background: linear-gradient(to right, #00f2b0 0, #ffffff 0);
+    border-radius: 3px;
+    margin: 0px 0px 0px 0px;
+}
+.b2mp{
+  width: 50px;
+    height: 10px;
+   background: linear-gradient(to right, #00f2b0 50%, #ffffff 50%);
+    border-radius: 3px;
+    margin: 0px 5px 0px 0px;
+     border: solid 2px #00f2b0;
+}
+
+.b2tp{
+  width: 50px;
+    height: 10px;
+   background: linear-gradient(to right, #00f2b0 100%, #ffffff 0%);
+    border-radius: 3px;
+    margin: 0px 5px 0px 0px;
+     border: solid 2px #00f2b0;
+}
+
+.b3mp{
+  width: 50px;
+    height: 10px;
+   background: linear-gradient(to right, #00f2b0 50%, #ffffff 50%);
+    border-radius: 3px;
+    margin: 0px 5px 0px 0px;
+     border: solid 2px #00f2b0;
+}
+
+.b4mp{
+  width: 50px;
+    height: 10px;
+   background: linear-gradient(to right, #00f2b0 50%, #ffffff 50%);
+    border-radius: 3px;
+    margin: 0px 5px 0px 0px;
+     border: solid 2px #00f2b0;
+}
+
+.b3tp{
+  width: 50px;
+    height: 10px;
+   background: linear-gradient(to right, #00f2b0 100%, #ffffff 0%);
+    border-radius: 3px;
+    margin: 0px 5px 0px 0px;
+     border: solid 2px #00f2b0;
+}
+.b4tp{
+  width: 50px;
+    height: 10px;
+   background: linear-gradient(to right, #00f2b0 100%, #ffffff 0%);
+    border-radius: 3px;
+    margin: 0px 5px 0px 0px;
+     border: solid 2px #00f2b0;
+}
+
+.b1tp{
+  width: 50px;
+    height: 10px;
+   background: linear-gradient(to right, #00f2b0 100%, #ffffff 0%);
+    border-radius: 3px;
+    margin: 0px 5px 0px 0px;
+     border: solid 2px #00f2b0;
+}
+/* ACABOU OS TIPOS DE BARRINHAS*/
+
+/*Começa o case 2*/
+.placeholder {
+  font-size: 25px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  margin: 0 auto;
+  border: solid 2.5px;
+  border-radius: 5px;
+  height: 45px;
+  color: #000000; /* texto digitado preto */
+  padding-left: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Placeholder preto quando fora de foco */
+.placeholder::placeholder {
+  color: #000000;
+  opacity: 1;
+}
+
+/* Ao focar, só a borda muda de cor, texto e placeholder continuam pretos */
+.placeholder:focus {
+  outline: none;
+  border-color: #00f2b0;
+}
+
+/* Remove as setas dos inputs number */
+.placeholder::-webkit-outer-spin-button,
+.placeholder::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.placeholder[type="number"] {
+  -moz-appearance: textfield;
+}
+.input-wrapper {
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.input-wrapper .placeholder {
+  width: 100%;
+  padding-right: 40px; /* espaço para o sufixo */
+}
+
+.input-sufix {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #000;
+  font-size: 20px;
+  pointer-events: none;
+}
+.botoesirevir{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 90%;
+  justify-content: center;
+  margin-top: px;
+  margin: auto;
+}
+.btnirevir{
+  width: 100%;
+  height: 50px;
+  background-color: #00f2b0;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-top: 30px;
+  margin-right: 5px ;
+}
+.Subtitulo1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -25px;
+  color: #8b8b8b;
+  font-weight: 400;
+  font-size: 15px;
+}
+.grid2{
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+  align-items: center;
+  margin: 0 auto;
+  justify-items: center;
+}
+.titulodivisoria{
+  font-size: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  text-align: center;
+
+}
+
+.placeholder2 {
+  font-size: 18px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  margin: 0 auto;
+  border: solid 2.5px;
+  border-radius: 5px;
+  height: 45px;
+  color: #000000; /* texto digitado preto */
+  padding-left: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Placeholder preto quando fora de foco */
+.placeholder2::placeholder2 {
+  color: #000000;
+  opacity: 1;
+}
+
+/* Ao focar, só a borda muda de cor, texto e placeholder continuam pretos */
+.placeholder2:focus {
+  outline: none;
+  border-color: #00f2b0;
+}
+
+/* Remove as setas dos inputs number */
+.placeholder2::-webkit-outer-spin-button,
+.placeholder2::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.placeholder2[type="number"] {
+  -moz-appearance: textfield;
+}
+.imc{
+  gap: 2px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.imcc{
+  font-size: 42px;
+  margin-top: 20px;
+  text-align: center;
+  margin-bottom: 0px;
+}
+.vimc{
+  font-size: 30px;
+  margin-top: 10px;
+  text-align: center;
+  color: #8b8b8b;
+}
+.dadosusuario {
+  border-left: 3px solid #00f2b0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-left: 5px;
+  margin-top: 0;
+  padding-top: 0;
+  gap: 0px; /* Espaço pequeno entre os itens */
+}
+
+.d1{
+  font-size: 20px;
+  margin: 0;
+  text-align: left;
+}
+
+.produto {
+  border-radius: 8px;
+  border: solid 2px #00f2b0;
+  width: 95%;
+  margin: 0 auto;
+  text-align: left;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 30px;
+  display: flex;             
+  flex-direction: row;        
+  align-items: center;        
+  gap: 16px;                  
+}
+.infoproduto{
+  border-left: solid 3px #00f2b0;
+  width: 70%;
+  padding-left: 5px;
+}
+.textinho{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.mes{
+  font-weight: bold;
+  color: black;
+  background-color: #00f2b0;
+  border-radius: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-left: 15px;
+  padding-right: 13px;
+  width: 150px;
+  margin-top: 10px;
+  padding-bottom: 1px;
+}
+.Subtitulo2{
+  margin: auto;
+  margin-bottom: 10px;
+  width: 95%;
+  text-align: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #2e2e2e;
+  margin-top: 10px;
+}
