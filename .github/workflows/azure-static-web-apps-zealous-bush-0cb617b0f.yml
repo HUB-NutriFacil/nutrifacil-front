@@ -41,11 +41,12 @@ jobs:
 
       # 5. Gera ID Token para OIDC (corrigido)
       - name: Get Id Token
-        uses: actions/github-script@v6
         id: idtoken
+        uses: actions/github-script@v6
         with:
           script: |
-            return await github.getOIDCToken()
+            const core = require('@actions/core')
+            return await core.getIDToken()
           result-encoding: string
 
       # 6. Deploy via OIDC
