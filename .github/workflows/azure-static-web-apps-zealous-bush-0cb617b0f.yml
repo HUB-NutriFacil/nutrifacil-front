@@ -39,7 +39,7 @@ jobs:
       - name: Build project
         run: npm run build
 
-      # 5. Gera ID Token para OIDC
+      # 5. Gera ID Token para OIDC (corrigido)
       - name: Get Id Token
         uses: actions/github-script@v6
         id: idtoken
@@ -47,7 +47,6 @@ jobs:
           script: |
             return await github.getOIDCToken()
           result-encoding: string
-
 
       # 6. Deploy via OIDC
       - name: Deploy to Azure Static Web Apps
