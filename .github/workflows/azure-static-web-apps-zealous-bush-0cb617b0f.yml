@@ -45,9 +45,9 @@ jobs:
         id: idtoken
         with:
           script: |
-            const core = require('@actions/core')
-            return await core.getIDToken()
+            return await github.getOIDCToken()
           result-encoding: string
+
 
       # 6. Deploy via OIDC
       - name: Deploy to Azure Static Web Apps
