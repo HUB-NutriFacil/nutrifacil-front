@@ -20,12 +20,31 @@ jobs:
           submodules: true
           lfs: false
 
-      # PASSO ADICIONADO: Remove arquivo problemático
-      - name: Remove problematic staticwebapp.config.json
-        run: |
-          find . -name "staticwebapp.config.json" -type f -delete
-          echo "Cleaned up staticwebapp.config.json files"
+       # PRIMEIRO: Build manual para controlar o processo
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: npm
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Build project
+        run: npm run build
       
+      # AGORA remove o arquivo problemático da pasta build
+      - name: Remove problematic staticwebapp.config.json from build
+        run: |
+          if [ -f "build/staticwebapp.config.json" ]; then
+            echo "Removing staticwebapp.config.json from build folder"
+            rm build/staticwebapp.config.json
+          else
+            echo "No staticwebapp.config.json found in build folder"
+            # Lista arquivos para debug
+            ls -la build/
+          fi
+
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
