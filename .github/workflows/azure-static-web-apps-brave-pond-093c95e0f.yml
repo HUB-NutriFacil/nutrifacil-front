@@ -19,6 +19,13 @@ jobs:
         with:
           submodules: true
           lfs: false
+
+      # PASSO ADICIONADO: Remove arquivo problemático
+      - name: Remove problematic staticwebapp.config.json
+        run: |
+          find . -name "staticwebapp.config.json" -type f -delete
+          echo "Cleaned up staticwebapp.config.json files"
+      
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
