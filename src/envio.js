@@ -1,6 +1,6 @@
 export async function enviarUserDataParaPagamento(userData) {
   try {
-    const response = await fetch('https://nutrifacil-back.azurewebsites.net/api/payments/create_preference', {
+    const response = await fetch(PROCESS.env.URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
