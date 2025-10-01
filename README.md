@@ -74,7 +74,22 @@ No diretório do projeto, você pode executar os seguintes comandos:
 </p>
 
 
+<details>
+  <summary>
+    <h2> 📁 Estrutura do Projeto </h2>
+  </summary>
 
+
+
+### 🎨 Frontend 
+
+
+```
+
+
+```
+  
+</details>
 
 
  
