@@ -1,0 +1,68 @@
+@import '../../../../../assets/styles/_variables.css';
+
+/* Container para a lista de botões - ANTES: .dietabtns */
+.optionsList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 95%;
+  max-width: 500px;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* O botão de opção de dieta - ANTES: .btndieta + .tituloedesc */
+.optionButton {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--background-color);
+  cursor: pointer;
+  text-align: left;
+  box-shadow: var(--box-shadow);
+  transition: all 0.2s ease;
+}
+
+.optionButton:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-5px);
+}
+
+/* A imagem dentro do botão - ANTES: .imagemdieta */
+.optionImage {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+/* O container do texto, com a borda - ANTES: .desctitu */
+.optionTextContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 3px solid var(--primary-color);
+  padding-left: 10px;
+  height: 100px; /* Garante que a borda tenha a altura da imagem */
+}
+
+/* O título da dieta - ANTES: .titulo-dieta */
+.optionTitle {
+  font-weight: bold;
+  font-size: 20px;
+  margin: 0 0 6px 0;
+  color: var(--text-color-dark);
+}
+
+/* A descrição da dieta - ANTES: .descricao-dieta */
+.optionDesc {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}

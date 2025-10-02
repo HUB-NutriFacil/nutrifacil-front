@@ -1,13 +1,50 @@
-import React from 'react';
+import React from "react";
+
+// Importa os estilos comuns E os específicos desta etapa
+import stepStyles from './styles/Step.module.css';
+import styles from "./styles/StepDiet.module.css";
+import ProgressBar from "../common/ProgressBar";
+
+// Importa as imagens
+import logo from "../../../../assets/icons/logo.svg";
+import lowCarbGif from "../../../../assets/images/diets/low-carb_diet.gif";
+import ketoGif from "../../../../assets/images/diets/ketogenic_diet.gif";
+import mediterraneanGif from "../../../../assets/images/diets/mediterranean_diet.gif";
+import vegetarianGif from "../../../../assets/images/diets/vegetarian_diet.gif";
+import antiInflammatoryGif from "../../../../assets/images/diets/anti-inflamatory_diet.gif";
+import unsureGif from "../../../../assets/images/diets/not-sure_diet.gif";
 
 const dietOptions = [
-    { name: "Low Carb", img: "/imagens/Animation - 1749142869912.gif", desc: "Reduz carboidratos para acelerar a queima de gordura." },
-    { name: "Cetogênica", img: "/imagens/Animation - 1749143230081.gif", desc: "Alta em gorduras e muito baixa em carboidratos." },
-    { name: "Mediterrânea", img: "/imagens/Animation - 1749142051509.gif", desc: "Baseada em alimentos frescos, azeite e peixes." },
-    { name: "Vegetariana", img: "/imagens/Animation - 1749132322980.gif", desc: "Exclui carnes, focando em vegetais e grãos, inclui ovos e derivados de leite." },
-    { name: "Anti-Inflamatória", img: "/imagens/Fire.gif", desc: "Dieta 100% focada na desinflamação corporal." },
-    { name: "Não tenho certeza", img: "/imagens/Animation - 1749141808625.gif", desc: "Ajude-me a escolher com base no meu perfil." },
-    // Dietas desabilitadas podem ser filtradas ou estilizadas de forma diferente
+  {
+    name: "Low Carb",
+    img: lowCarbGif,
+    desc: "Reduz carboidratos para acelerar a queima de gordura.",
+  },
+  {
+    name: "Cetogênica",
+    img: ketoGif,
+    desc: "Alta em gorduras e muito baixa em carboidratos.",
+  },
+  {
+    name: "Mediterrânea",
+    img: mediterraneanGif,
+    desc: "Baseada em alimentos frescos, azeite e peixes.",
+  },
+  {
+    name: "Vegetariana",
+    img: vegetarianGif,
+    desc: "Exclui carnes, focando em vegetais e grãos, inclui ovos e derivados de leite.",
+  },
+  {
+    name: "Anti-Inflamatória",
+    img: antiInflammatoryGif,
+    desc: "Dieta 100% focada na desinflamação corporal.",
+  },
+  {
+    name: "Não tenho certeza",
+    img: unsureGif,
+    desc: "Ajude-me a escolher com base no meu perfil.",
+  },
 ];
 
 function StepDiet({ handleChange, nextStep }) {
@@ -17,26 +54,40 @@ function StepDiet({ handleChange, nextStep }) {
   };
 
   return (
-    <div className="divquestion1">
-      <div className="divlogocentral"><img className="logocentral" src="/imagens/logogrande.svg" alt="Logo" /></div>
-      <div className="barrinha"><div className="b1c1"></div><div className="b2"></div><div className="b3"></div><div className="b4"></div></div>
-      <div className="titulonrml">
-        <h2>Qual tipo de dieta você prefere?</h2>
-        <div className="dietabtns">
-          {dietOptions.map(({ name, desc, img }) => (
-            <button className="btndieta" key={name} onClick={() => handleSelect(name)}>
-              <div className="tituloedesc">
-                <img className="imagemdieta" src={img} alt={`Imagem da dieta ${name}`} />
-                <div className="desctitu">
-                  <div className="titulo-dieta">{name}</div>
-                  <div className="descricao-dieta">{desc}</div>
-                </div>
-              </div>
-            </button>
-          ))}
-        </div>
+    <div className={stepStyles.container}>
+      <div className={stepStyles.logoContainer}>
+        <img className={stepStyles.logo} src={logo} alt="Logo Nutrifacil" />
       </div>
-      <p className="rodape">Todos os direitos Reservados | EasyNutri™</p>
+
+      <ProgressBar currentStep={1} />
+
+      <h2 className={stepStyles.title}>Qual tipo de dieta você prefere?</h2>
+
+      {/* ANTES: <div className="dietabtns"> */}
+      <div className={styles.optionsList}>
+        {dietOptions.map(({ name, desc, img }) => (
+          // ANTES: <button className="btndieta">
+          <button
+            className={styles.optionButton}
+            key={name}
+            onClick={() => handleSelect(name)}
+          >
+            {/* ANTES: <img className="imagemdieta"> */}
+            <img
+              className={styles.optionImage}
+              src={img}
+              alt={`Dieta ${name}`}
+            />
+            {/* ANTES: <div className="desctitu"> */}
+            <div className={styles.optionTextContainer}>
+              {/* ANTES: <div className="titulo-dieta"> */}
+              <h3 className={styles.optionTitle}>{name}</h3>
+              {/* ANTES: <div className="descricao-dieta"> */}
+              <p className={styles.optionDesc}>{desc}</p>
+            </div>
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

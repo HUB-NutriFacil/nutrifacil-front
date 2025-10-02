@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from "react";
-import { createPreference } from "../../services/paymentService";
+import { createPaymentPreference } from "../../services/paymentService";
 // A função de gerar o plano de dieta deve estar no quizService
 import { generateDietPlan } from "../../services/quizService";
+import StepNavigation from "../common/StepNavigation"; 
 
 // SEU_PUBLIC_KEY do Mercado Pago deve vir de variáveis de ambiente (.env)
 const MERCADO_PAGO_PUBLIC_KEY = 'APP_USR-486df697-f288-44e6-b23a-6ff1de540186';
@@ -14,7 +15,7 @@ function StepCheckout({ userData, prevStep }) {
 
     const initializeBrick = async () => {
       try {
-        const preferenceId = await createPreference(userData);
+        const preferenceId = await createPaymentPreference(userData);
         if (!isComponentMounted || !window.MercadoPago) return;
 
         const mp = new window.MercadoPago(MERCADO_PAGO_PUBLIC_KEY, { locale: 'pt-BR' });

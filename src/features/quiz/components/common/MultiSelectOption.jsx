@@ -1,16 +1,19 @@
 import React from 'react';
-import './MultiSelectOption.css'; // ✨ Crie este arquivo CSS!
+import styles from './MultiSelectOption.module.css';
 
 function MultiSelectOption({ label, isSelected, onClick }) {
-  // A classe 'selected' será adicionada condicionalmente
-  const buttonClass = `preferencia-opcao ${isSelected ? 'selected' : ''}`;
+  // Constrói a string de classes, adicionando 'selected' condicionalmente
+  const buttonClasses = `
+    ${styles.option} 
+    ${isSelected ? styles.selected : ''}
+  `;
 
   return (
-    <button type="button" className={buttonClass} onClick={onClick}>
-      <span className="checkbox-icon">
-        {isSelected && <span className="checkbox-dot"></span>}
+    <button type="button" className={buttonClasses} onClick={onClick}>
+      <span className={styles.checkboxIcon}>
+        {isSelected && <span className={styles.checkboxDot}></span>}
       </span>
-      {label}
+      <span className={styles.label}>{label}</span>
     </button>
   );
 }

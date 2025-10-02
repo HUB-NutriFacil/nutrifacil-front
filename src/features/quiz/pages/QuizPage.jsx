@@ -3,6 +3,8 @@
 import React from 'react';
 import { useQuiz } from '../hooks/useQuiz';
 
+import styles from './QuizPage.module.css'; // Estilos específicos da página do quiz
+
 // Importando TODOS os componentes de etapa
 import StepGender from '../components/steps/StepGender';
 import StepDiet from '../components/steps/StepDiet';
@@ -40,7 +42,8 @@ function QuizPage() {
   }
 
   return (
-    <div className="quiz-container">
+    <div className={styles.container}>
+      
       <CurrentStepComponent
         userData={userData}
         handleChange={handleChange}

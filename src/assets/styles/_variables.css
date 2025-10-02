@@ -1,0 +1,9 @@
+/* src/assets/styles/_variables.css */
+:root {
+  --primary-color: #00f2b0;
+  --text-color: #000000;
+  --light-gray-color: #ccc;
+  --medium-gray-color: #8b8b8b;
+  --background-color: #ffffff;
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}

@@ -1,0 +1,137 @@
+@import '../../../../../assets/styles/_variables.css';
+
+/* ANTES: .divlogo - Alinha o logo à esquerda como no original */
+.logoContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+
+}
+
+
+.logo{
+  width: 200px;
+  height: 80px;
+  object-fit: cover;
+}
+
+/* ANTES: #divheadline */
+.headline {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+/* ANTES: .tempo */
+.tag {
+  background-color: var(--primary-color);
+  width: 180px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  margin: 0.5rem auto; /* Centraliza a tag */
+  padding-bottom: 4px;
+  box-sizing: border-box;
+  font-size: 0.9rem;
+}
+
+/* ANTES: #divbotao */
+.genderButtons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px; /* ANTES: margin: 5px; */
+}
+
+/* ANTES: .botaosexomen / .botaosexwoman */
+.genderButton {
+  width: 150px;
+  height: 250px;
+  background: linear-gradient(to top, var(--primary-color) 17%, var(--background-color) 17%);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 8px;
+}
+
+/* ANTES: .pessoabotao */
+.genderImage {
+  width: 150px;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+/* ANTES: .linha-botao */
+.buttonTextContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* ANTES: .textobotao */
+.buttonText {
+  font-size: 20px;
+  color: var(--text-color-dark);
+  text-align: center;
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+/* ANTES: .iconseta */
+.arrowIcon {
+  color: var(--text-color-dark);
+  font-size: 18px;
+}
+
+/* ANTES: .textoexp */
+.infoSection {
+  width: 95%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+/* ANTES: .linhaexp */
+.infoTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* ANTES: .gift */
+.infoGif {
+  width: 90px;
+  height: 70px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+/* ANTES: .explicacao */
+.infoTitle {
+  font-size: 24px;
+  border-left: 4px solid var(--primary-color);
+  padding-left: 8px;
+  flex-grow: 1; /* Permite que o texto ocupe o espaço restante */
+}
+
+/* ANTES: .explicacao2 */
+.infoText {
+  margin-top: 10px;
+  color: var(--text-color-light);
+}
+
+

@@ -1,51 +1,27 @@
-import React, { useState } from "react";
-import HomePage from "./Quiz";
-import "./App.css";
-import { enviarUserDataParaPagamento } from "./envio"; // Importação
+// ✨ REMOVEMOS: useState, HomePage, App.css, enviarUserDataParaPagamento
 
+import React from 'react';
+
+// 1. Importa os estilos globais da aplicação.
+// Este arquivo agora contém as regras do seu antigo index.css.
+import './assets/styles/global.css';
+
+// 2. Importa o componente que gerencia todas as rotas da aplicação.
+import { AppRoutes } from './routes';
+
+/**
+ * O componente App agora é extremamente simples.
+ * Sua única responsabilidade é ser o ponto de entrada que renderiza
+ * o sistema de rotas da aplicação. Toda a lógica do quiz foi
+ * movida para a feature 'quiz'.
+ */
 function App() {
-  const [quizStarted, setQuizStarted] = useState(false);
-  const [currentStep, setCurrentStep] = useState(0);
-  const [answers, setAnswers] = useState([]);
-
-  const handleStart = () => {
-    setQuizStarted(true);
-  };
-
-  const handleAnswer = (answer) => {
-    setAnswers(prev => [...prev, answer]);
-    setCurrentStep(prev => prev + 1);
-  };
-
-  const handleFinish = async () => {
-    try {
-      await enviarUserDataParaPagamento(answers); // Envia para o backend
-      alert("Dados enviados com sucesso!");
-    } catch (error) {
-      alert("Erro ao enviar dados para o backend.");
-    }
-    setQuizStarted(false);
-    setCurrentStep(0);
-    setAnswers([]);
-  };
-
-  if (!quizStarted) {
-    return <HomePage onStart={handleStart} />;
-  }
-
-  if (currentStep >= 11) {
-    handleFinish();
-    return null;
-  }
-
   return (
+    // A classe 'App' pode ser usada para um container geral, se necessário.
     <div className="App">
-      <button onClick={() => handleAnswer({ step: currentStep, resposta: "Resposta Exemplo" })}>
-        Responder e Avançar
-      </button>
+      <AppRoutes />
     </div>
   );
 }
 
 export default App;
-

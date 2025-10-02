@@ -1,0 +1,26 @@
+@import '../../../../assets/styles/_variables.css';
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  width: 90%; /* Ocupa 90% do container pai, garantindo que não vaze */
+  max-width: 400px; /* Limite máximo para telas grandes */
+  height: 10px; /* Altura unificada no container */
+}
+
+.bar {
+  flex: 1; /* ✨ A MÁGICA: Cada barra ocupa uma fração igual do espaço disponível */
+  height: 100%;
+  background-color: var(--background-color);
+  border-radius: 3px;
+  border: 2px solid var(--primary-color);
+  overflow: hidden; /* Garante que o preenchimento não saia da borda */
+}
+
+.fill {
+  height: 100%;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease-in-out;
+  border-radius: 1px; /* Para não sobrepor a borda arredondada do pai */
+}

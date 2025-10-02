@@ -1,27 +1,28 @@
-import React from 'react';
+// Exemplo em: src/features/quiz/components/steps/StepWeight.jsx
+import styles from './styles/Step.module.css';// Importa o CSS Module
+import ProgressBar from '../common/ProgressBar';
 import StepNavigation from '../common/StepNavigation';
 
 function StepWeight({ userData, handleChange, nextStep, prevStep }) {
   const isNextDisabled = !userData.peso || userData.peso <= 0;
 
   return (
-    <div className="divquestion2">
-      <div className="divlogocentral">
-        <img className="logo" src="/imagens/logogrande.svg" alt="Logo" />
+    // ANTES: <div className="divquestion2">
+    <div className={styles.container}>
+      <div className={styles.logoContainer}>
+        <img className={styles.logo} src="/imagens/logogrande.svg" alt="Logo" />
       </div>
-      <div className="barrinha">
-        <div className="b1c1"></div>
-        <div className="b2mp"></div>
-        <div className="b3"></div>
-        <div className="b4"></div>
-      </div>
-      <h2 className="Titulo">Qual seu peso? (kg)</h2>
+
+      <ProgressBar currentStep={2} /> {/* Componente no lugar da .barrinha */}
+
+      {/* ANTES: <h2 className="Titulo"> */}
+      <h2 className={styles.title}>Qual seu peso? (kg)</h2>
+      
+      {/* ANTES: <input className="placeholder"> */}
       <input
-        className="placeholder"
+        className={styles.inputField}
         type="number"
-        placeholder="Digite seu peso"
-        value={userData.peso}
-        onChange={(e) => handleChange("peso", e.target.value)}
+        // ... resto das props
       />
       
       <StepNavigation 

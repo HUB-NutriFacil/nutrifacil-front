@@ -1,8 +1,11 @@
 import React, { useState, useRef } from "react";
-import { enviarUserDataParaPagamento } from "../../services/quizService"; // Importa do service
-import { formatWhatsapp } from "../../../../utils/formatters"; // Importa do utilitário
-import { isValidWhatsapp } from "../../../../utils/validators"; // Importa do utilitário
-import StepNavigation from "../common/StepNavigation";
+// Assumindo que essa função foi movida para o paymentService
+import { createPaymentPreference } from "../../services/paymentService"; 
+import { formatWhatsapp } from "../../../../utils/formatters";
+import { isValidWhatsapp } from "../../../../utils/validators";
+import StepNavigation from "../common/StepNavigation"; 
+
+import styles from './styles/Step.module.css'; // ✨ Crie este arquivo CSS!
 
 function StepWpp({ nextStep, prevStep, userData, handleChange }) {
     const inputRef = useRef(null);
@@ -10,17 +13,17 @@ function StepWpp({ nextStep, prevStep, userData, handleChange }) {
 
     const handleInputChange = (e) => {
         const rawNumbers = e.target.value.replace(/\D/g, "");
-        handleChange("celular", rawNumbers); // Salva o número puro no estado
+        handleChange("celular", rawNumbers);
     };
 
     const handleContinuar = async () => {
         setLoading(true);
         try {
-            // Supondo que o envio para pagamento acontece aqui
-            await enviarUserDataParaPagamento(userData); 
+            // A chamada de API correta aqui é para criar a preferência de pagamento
+            await createPaymentPreference(userData); 
             nextStep();
         } catch (error) {
-            console.error("Erro ao enviar dados:", error);
+            console.error("Erro ao criar preferência de pagamento:", error);
             alert("Não foi possível continuar. Tente novamente.");
         } finally {
             setLoading(false);
@@ -28,36 +31,36 @@ function StepWpp({ nextStep, prevStep, userData, handleChange }) {
     };
 
     return (
-        <div className="divquestion2">
-            <div className="divlogocentral">
-                <img className="logo" src="/imagens/logogrande.svg" alt="Logo" />
+        // ✨ Usando as classes do nosso CSS Module
+        <div className={styles.container}>
+            <div className={styles.logoContainer}>
+                {/* Aqui seria ideal importar o logo como fizemos antes */}
+                <img className={styles.logo} src="/imagens/logogrande.svg" alt="Logo" />
             </div>
-            <h2 className="Titulo">Qual seu WhatsApp?</h2>
-            <p className="Subtitulo2">
+
+            <h2 className={styles.title}>Qual seu WhatsApp?</h2>
+            <p className={styles.subtitle}>
                 Digite seu número para receber o plano nutricional personalizado.
             </p>
+
             <input
                 ref={inputRef}
-                className="placeholder"
-                type="tel" // Usar type="tel" é mais semântico
+                className={styles.input}
+                type="tel"
                 placeholder="(99) 99999-9999"
-                value={formatWhatsapp(userData.celular)} // Formata o valor para exibição
+                value={formatWhatsapp(userData.celular)}
                 onChange={handleInputChange}
                 autoComplete="tel"
             />
-            {/* Podemos usar o StepNavigation aqui, mas com um texto customizado no botão */}
-            <div className="botoesirevir">
-                <button className="btnirevir" onClick={prevStep}>
-                    Voltar
-                </button>
-                <button
-                    className="btnirevir"
-                    onClick={handleContinuar}
-                    disabled={!isValidWhatsapp(userData.celular) || loading}
-                >
-                    {loading ? "Enviando..." : "Continuar"}
-                </button>
-            </div>
+            
+            {/* ✨ Usando o StepNavigation com o texto customizado e lógica de loading */}
+            <StepNavigation 
+                onPrev={prevStep}
+                onNext={handleContinuar}
+                isNextDisabled={!isValidWhatsapp(userData.celular) || loading}
+                nextText={loading ? "Enviando..." : "Continuar"}
+            />
+
             <p className="rodape">Todos os direitos Reservados | EasyNutri™</p>
         </div>
     );

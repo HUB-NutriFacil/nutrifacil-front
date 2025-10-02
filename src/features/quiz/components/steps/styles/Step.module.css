@@ -1,0 +1,91 @@
+/*
+  Este arquivo contém os estilos comuns (padrão) que são importados
+  por múltiplos componentes de etapa para manter a consistência.
+*/
+@import '../../../../../assets/styles/_variables.css';
+
+/* Contêiner principal para cada etapa */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem; /* Espaçamento padrão entre elementos */
+  width: 100%;
+  padding: 1rem 0;
+  box-sizing: border-box;
+  
+}
+
+/* Div que segura o logo */
+.logoContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* A imagem do logo */
+.logo {
+  width: 180px; /* Tamanho padrão para celular */
+}
+
+/* O título principal da etapa */
+.title {
+  font-size: 1.75rem; /* Tamanho base para celular */
+  text-align: center;
+  margin: 0;
+  color: var(--text-color-dark);
+}
+
+/* O subtítulo descritivo */
+.subtitle {
+  font-size: 1rem;
+  color: var(--text-color-light);
+  font-weight: 400;
+  text-align: center;
+  margin-top: -1rem; /* Aproxima do título */
+  max-width: 350px;
+}
+
+/* Campo de input (texto/número) */
+.inputField {
+  font-size: 1.25rem;
+  width: 95%;
+  max-width: 400px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius);
+  height: 50px;
+  padding: 0 15px;
+  box-sizing: border-box;
+  box-shadow: var(--box-shadow);
+  text-align: center;
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+
+
+
+
+
+
+
+
+/* Estilos para telas maiores (tablets e desktops) */
+@media (min-width: 768px) {
+  .logo {
+    width: 200px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .inputField {
+    text-align: left;
+  }
+}
+

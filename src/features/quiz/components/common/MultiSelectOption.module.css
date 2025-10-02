@@ -1,0 +1,57 @@
+@import '../../../../assets/styles/_variables.css';
+
+.option {
+  width: 100%;
+  min-width: 160px; /* Largura mínima para garantir legibilidade */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  border-radius: var(--border-radius);
+  border: 2px solid var(--border-color);
+  background: var(--background-color);
+  cursor: pointer;
+  text-align: left;
+  box-shadow: var(--box-shadow-light);
+  transition: all 0.2s ease-in-out;
+  font-size: 1rem;
+}
+
+.option:hover {
+  border-color: var(--primary-color-dark);
+  transform: translateY(-3px);
+  box-shadow: var(--box-shadow);
+}
+
+.option.selected {
+  border-color: var(--primary-color);
+  background-color: #f0fffa; /* Um fundo leve para destacar */
+}
+
+.checkboxIcon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--text-color-dark);
+  position: relative;
+  background: var(--background-color);
+  flex-shrink: 0;
+}
+
+.checkboxDot {
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.label {
+  color: var(--text-color-dark);
+  font-weight: 500;
+}
