@@ -1,15 +1,17 @@
-import styles from './QuizPage.module.css'
+import { useState } from "react";
+import styles from "./QuizPage.module.css";
+import HeaderQuiz from "../features/quiz/components/HeaderQuiz";
+import TitleQuiz from "../features/quiz/components/common/TitleQuiz";
 
-import HeaderQuiz from '../features/quiz/components/HeaderQuiz'
-
-function QuizPage(){
-    return(
-        <div className={styles.container}>
-            <HeaderQuiz/>
-             <h1>teste</h1>
-        </div>
-    )
+function QuizPage() {
+  const [currentStep, setCurrentStep] = useState(0);
+ 
+  return (
+    <div className={styles.container}>
+      <HeaderQuiz step={currentStep} />
+      <TitleQuiz>Plano de nutrição personalizado</TitleQuiz>
+    </div>
+  );
 }
 
-
-export default QuizPage
+export default QuizPage;
