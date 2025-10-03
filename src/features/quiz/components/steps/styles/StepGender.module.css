@@ -2,11 +2,13 @@
 
 /* ANTES: .divlogo - Alinha o logo à esquerda como no original */
 .logoContainer {
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  height: 80px;
-  background-color: blue;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 0; 
+    margin-left: 0;
+
+    
 }
 
 
@@ -14,6 +16,8 @@
   width: 200px;
   height: 80px;
   object-fit: cover;
+  overflow-clip-margin: content-box;
+  overflow: clip;
 }
 
 /* ANTES: #divheadline */
