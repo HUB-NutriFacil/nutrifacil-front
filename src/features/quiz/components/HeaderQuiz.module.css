@@ -1,0 +1,19 @@
+.container {
+    width: 100%;
+    background-color: white;
+    height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    margin-top: 20px;
+}
+
+
+.logo {
+    width: 200px;
+
+}

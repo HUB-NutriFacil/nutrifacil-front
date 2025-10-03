@@ -1,1 +1,25 @@
- 
+ /* src/index.css */
+
+ :root {
+     --cor-primaria: #00f2b0;
+     --cor-fundo: #ffffff;
+     --cor-texto-principal: #000000;
+
+ }
+
+ body {
+     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+         monospace;
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+
+     background-color: var(--cor-fundo);
+     /* Usando a variável aqui */
+ }
+
+
+ * {
+     margin: 0px;
+     padding: 0px;
+     box-sizing: border-box;
+ }
