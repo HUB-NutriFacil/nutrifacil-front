@@ -1,9 +1,9 @@
 import styles from "./GenderStep.module.css";
 
-import TitleQuiz from "../common/TitleQuiz";
-import SubtitleQuiz from "../common/SubtitleQuiz";
+import TitleQuiz from "../common/Titles/TitleQuiz";
+import SubtitleQuiz from "../common/Titles/SubtitleQuiz";
 import Callout from "../common/Callout";
-import ProgressBar from "../../../../components/commons/ProgressBar";
+import LargeButton from "../common/Buttons/LargeButton";
 
 function GenderStep({ onNext, onBack, progressBarSlot }) {
   return (
@@ -17,9 +17,26 @@ function GenderStep({ onNext, onBack, progressBarSlot }) {
 
       <Callout>Menos de 5 minutos</Callout>
 
-       {progressBarSlot}
-    <TitleQuiz>Selecione seu gênero</TitleQuiz>
-      
+      {progressBarSlot}
+      <TitleQuiz>Selecione seu gênero</TitleQuiz>
+
+      {/* NOVO: Container para os botões */}
+      <div className={styles.optionsContainer}>        
+        {/* Usando o LargeButton para a opção "Masculino" */}
+        <LargeButton 
+          iconName="man" 
+          iconAlt="Um homem" 
+          title="Masculino" 
+        />
+
+           {/* Usando o LargeButton para a opção "Feminino" */}
+        <LargeButton 
+          iconName="woman" 
+          iconAlt="Uma mulher" 
+          title="Feminino" 
+        />
+        
+      </div>
     </div>
   );
 }

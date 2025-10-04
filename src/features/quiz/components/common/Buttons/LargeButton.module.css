@@ -1,0 +1,28 @@
+.container{
+    background-color: white;
+    height: 250px;
+    width: 150px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--cinza-leve);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px var(--sombra-suave);
+
+    overflow: hidden;
+    cursor: pointer;
+
+}
+
+
+.footer{
+    width: 100%;
+    background-color: var(--cor-primaria);
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

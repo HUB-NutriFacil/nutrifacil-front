@@ -1,4 +1,5 @@
 import styles from "./HeaderQuiz.module.css";
+import iconStyle from "./Icon/Icon.module.css"
 import Icon from "./Icon/Icon";
 
 // 1. Adicione { step } como um parâmetro para receber a prop do componente pai.
@@ -11,7 +12,7 @@ function HeaderQuiz({ step }) {
   return (
     // 3. Combine a classe base com a classe modificadora que foi escolhida.
     <div className={`${styles.headerContainer} ${modifierClass}`}>
-      <Icon name="logo" alt="Logo escrito NutriFácil" className={styles.logo} />
+      <Icon name="logo" alt="Logo escrito NutriFácil" className={iconStyle.logo} />
     </div>
   );
 }

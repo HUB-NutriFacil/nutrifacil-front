@@ -3,7 +3,9 @@
  :root {
      --cor-primaria: #00f2b0;
      --cor-fundo: #ffffff;
+     --cinza-leve: #ccc;
      --cor-texto-principal: #000000;
+     --sombra-suave: #0003;
 
 
  }

@@ -4,10 +4,16 @@ import React from "react";
 // 1. Importe cada ícone individualmente aqui.
 //    Lembre-se de usar "?react" no final para importá-lo como um componente.
 import LogoIcon from '../../../../assets/icons/logo.svg?react';
+import ManImage from "../../../../assets/images/man.svg?react"
+import WomanImage from "../../../../assets/images/woman.svg?react"
+import Arrow from "../../../../assets/icons/arrow.svg?react"
 
 // 2. Crie um objeto que mapeia um nome simples (string) ao componente importado.
 const iconMap = {
   logo: LogoIcon,
+  man: ManImage,
+  woman: WomanImage,
+  arrow: Arrow
   // Adicione novas linhas aqui sempre que criar um novo ícone!
 };
 

@@ -1,0 +1,21 @@
+/* # logo */
+
+.logo {
+    width: 200px;
+}
+
+/*  # pessoa dentro do botão de genero */
+.person {
+   width: 200px;
+   height: 280px;
+   margin-bottom: -10px;
+}
+
+
+.arrow{
+    max-height: 24px;
+    font-size: 1.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
