@@ -1,8 +1,32 @@
-.conteiner{
-    background-color: aqua;
-    border-left: 2px solid var(--cor-primaria);
-
+.conteiner {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+gap: 10px;
+}
+
+.webm {
+    width: 120px;
+    margin-right: -10px;
+}
+
+
+.descriptions {
+    display: flex;
+    align-items: center;
 
     
+    height: 90px;
+    overflow: hidden;
+  
 }
+
+.miniAboutTitle {
+ border-left: 4px solid var(--cor-primaria);
+ font-size: 1.5rem;
+ padding-left: 3px;
+ text-transform: none;
+ 
+}
+

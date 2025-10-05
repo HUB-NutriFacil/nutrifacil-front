@@ -1,5 +1,6 @@
 import React from "react";
 
+
 // --- MAPA DE ANIMAÇÕES ---
 // 1. Importe cada arquivo .webm aqui.
 //    O bundler vai transformar isso no caminho final do arquivo.
@@ -42,6 +43,7 @@ function VideoAnimation({ name, ...props }) {
       loop
       muted
       playsInline
+      
       {...props} // Espalha outras props como className, width, height, style, etc.
     >
       <source src={videoSrc} type="video/webm" />

@@ -1,7 +1,12 @@
+// src/components/common/Titles/DescriptiveTitle.jsx
 import styles from "./DescriptiveTitle.module.css";
 
-function DescriptiveTitle({ children }) {
-  return <h3 className={styles.descriptive}> {children} </h3>;
+// Receba a prop "className" junto com "children"
+function DescriptiveTitle({ children, className }) {
+  // Combine a classe padrão do componente com a classe recebida
+  const combinedClassName = `${styles.descriptive} ${className || ''}`;
+
+  return <h3 className={combinedClassName}> {children} </h3>;
 }
 
 export default DescriptiveTitle;

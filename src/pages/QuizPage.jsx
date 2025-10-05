@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./QuizPage.module.css";
 import HeaderQuiz from "../features/quiz/components/HeaderQuiz";
+import FooterQuiz from "../features/quiz/components/FooterQuiz"
 // Mantendo o caminho correto para componentes de UI reutilizáveis
 import ProgressBar from "../components/commons/ProgressBar"; 
 
@@ -71,6 +72,8 @@ function QuizPage() {
           <CurrentStepComponent onNext={handleNext} onBack={handleBack} />
         )}
       </main>
+
+      <FooterQuiz> Todos os direitos Reservados | NutriFácil™ </FooterQuiz>
     </div>
   );
 }

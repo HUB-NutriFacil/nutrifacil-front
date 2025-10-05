@@ -30,7 +30,7 @@ function GenderStep({ onNext, onBack, progressBarSlot }) {
         <LargeButton iconName="woman" iconAlt="Uma mulher" title="Feminino" />
       </div>
 
-      
+      <MiniAbout/>
     </div>
   );
 }
