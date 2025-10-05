@@ -1,0 +1,8 @@
+.conteiner{
+    background-color: aqua;
+    border-left: 2px solid var(--cor-primaria);
+
+    display: flex;
+
+    
+}
