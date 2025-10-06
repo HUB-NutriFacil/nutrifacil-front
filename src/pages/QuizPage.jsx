@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./QuizPage.module.css";
 
 import HeaderQuiz from "../features/quiz/components/HeaderQuiz";
@@ -20,7 +20,17 @@ const quizSteps = [
 ];
 
 function QuizPage() {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(() => {
+  const savedStep = localStorage.getItem("quizCurrentStep");
+  // Se houver um passo salvo, converte para número. Senão, começa do 0.
+  return savedStep !== null ? parseInt(savedStep, 10) : 0;
+});
+
+
+useEffect(() => {
+  // Salva o valor atual do 'currentStep' no localStorage como uma string.
+  localStorage.setItem("quizCurrentStep", currentStep);
+}, [currentStep]); // Este array faz o efeito rodar toda vez que 'currentStep' mudar.
 
   // Lógica de controle do ProgressBar (sem alterações)
   const TOTAL_SEGMENTS = 4;

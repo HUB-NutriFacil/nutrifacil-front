@@ -1,3 +1,6 @@
 .container{
-    background-color: blue;
+    margin-top: 20px;
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
 }

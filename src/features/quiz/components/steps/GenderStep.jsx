@@ -23,7 +23,7 @@ function GenderStep({ onNext, progressBarSlot }) {
 
   return (
     <div className={styles.container}>
-      <TitleQuiz>Plano de nutrição personalizado</TitleQuiz>
+      <TitleQuiz >Plano de nutrição personalizado</TitleQuiz>
 
       <SubtitleQuiz>
         Segundo seus objetivos e metas de saúde, de acordo com seus dados e

@@ -4,8 +4,9 @@ import TitleQuiz from "../common/Titles/TitleQuiz"
 
 function DietStep(){
     return(
-        <div>
-            <TitleQuiz>Qual tipo de dieta você prefere?</TitleQuiz>
+        <div className={styles.container}>
+            <TitleQuiz variant="capitalize">Qual tipo de dieta você prefere?</TitleQuiz>
+
         </div>
     )
 }
