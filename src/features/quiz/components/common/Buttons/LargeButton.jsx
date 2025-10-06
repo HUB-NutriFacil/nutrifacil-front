@@ -3,14 +3,14 @@ import styles from "./LargeButton.module.css";
 import iconStyles from "../../Icon/Icon.module.css";
 import Icon from "../../Icon/Icon";
 
-// 1. O componente agora recebe props
-function LargeButton({ iconName, iconAlt, title }) {
+// 1. O componente agora recebe a prop 'onClick' junto com as outras
+function LargeButton({ iconName, iconAlt, title, onClick }) {
   return (
-    <div className={styles.container}>
-      {/* 2. As props são usadas para definir o ícone */}
+    // 2. A prop 'onClick' é aplicada diretamente na div principal,
+    // tornando todo o container clicável.
+    <div className={styles.container} onClick={onClick}>
       <Icon name={iconName} alt={iconAlt} className={iconStyles.person} />
       <div className={styles.footer}>
-        {/* 3. A prop 'title' é usada para o texto */}
         <DescriptiveTitle>{title}</DescriptiveTitle>
         <Icon
           name="arrow"

@@ -2,7 +2,7 @@ import styles from "./NavigateButton.module.css"
 
 function NavigateButton({children}){
     return(
-        <div className={style.container}>
+        <div className={styles.container}>
             {children}
         </div>
     )

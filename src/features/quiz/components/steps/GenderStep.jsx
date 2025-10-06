@@ -6,7 +6,21 @@ import Callout from "../common/Callout";
 import LargeButton from "../common/Buttons/LargeButton";
 import MiniAbout from "../common/MiniAbout";
 
-function GenderStep({ onNext, onBack, progressBarSlot }) {
+// ALTERAÇÃO: Removi a prop 'onBack' pois não é usada neste step.
+function GenderStep({ onNext, progressBarSlot }) {
+
+  // NOVO: Uma função para lidar com a seleção de gênero.
+  // Isso torna o código mais limpo e preparado para o futuro.
+  const handleGenderSelect = (selectedGender) => {
+    console.log(`Gênero selecionado: ${selectedGender}`);
+
+    // Futuramente, é aqui que você vai salvar a escolha do usuário
+    // em um estado geral do quiz.
+    
+    // Chama a função recebida via props para avançar para o próximo step.
+    onNext(); 
+  };
+
   return (
     <div className={styles.container}>
       <TitleQuiz>Plano de nutrição personalizado</TitleQuiz>
@@ -21,13 +35,23 @@ function GenderStep({ onNext, onBack, progressBarSlot }) {
       {progressBarSlot}
       <TitleQuiz>Selecione seu gênero</TitleQuiz>
 
-      {/* NOVO: Container para os botões */}
       <div className={styles.optionsContainer}>
-        {/* Usando o LargeButton para a opção "Masculino" */}
-        <LargeButton iconName="man" iconAlt="Um homem" title="Masculino" />
+        {/* ALTERAÇÃO: Adicionamos o evento onClick em cada botão.
+          Usamos uma arrow function para chamar nossa nova função handleGenderSelect.
+        */}
+        <LargeButton 
+          iconName="man" 
+          iconAlt="Um homem" 
+          title="Masculino" 
+          onClick={() => handleGenderSelect("Masculino")} 
+        />
 
-        {/* Usando o LargeButton para a opção "Feminino" */}
-        <LargeButton iconName="woman" iconAlt="Uma mulher" title="Feminino" />
+        <LargeButton 
+          iconName="woman" 
+          iconAlt="Uma mulher" 
+          title="Feminino" 
+          onClick={() => handleGenderSelect("Feminino")} 
+        />
       </div>
 
       <MiniAbout/>

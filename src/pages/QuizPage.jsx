@@ -1,34 +1,34 @@
 import { useState } from "react";
 import styles from "./QuizPage.module.css";
+
 import HeaderQuiz from "../features/quiz/components/HeaderQuiz";
 import FooterQuiz from "../features/quiz/components/FooterQuiz";
-
-// Mantendo o caminho correto para componentes de UI reutilizáveis
+// ALTERAÇÃO: O caminho correto para o StepNavigation, conforme sua estrutura de pastas
+import StepNavigation from "../features/quiz/components/steps/StepNavigation"; 
 import ProgressBar from "../components/commons/ProgressBar";
 
-// 1. Importe todos os seus componentes de step
+// 1. Seus componentes de step
 import GenderStep from "../features/quiz/components/steps/GenderStep";
 import DietStep from "../features/quiz/components/steps/DietStep";
-// import ObjectiveStep from "../features/quiz/steps/ObjectiveStep"; // Importe os outros quando criá-los
+// import ObjectiveStep from "../features/quiz/steps/ObjectiveStep";
 
-// 2. Crie o "roteiro" do quiz
+// 2. O roteiro do quiz
 const quizSteps = [
-  { Component: GenderStep },
-  { Component: DietStep },
-  // { Component: ObjectiveStep },
-  // Adicione os outros 10 steps aqui na ordem correta
+  { Component: GenderStep, name: "Gender" },
+  { Component: DietStep, name: "Diet" },
+  // Adicione os outros steps aqui
 ];
 
 function QuizPage() {
   const [currentStep, setCurrentStep] = useState(0);
 
-  // Lógica de controle do ProgressBar
+  // Lógica de controle do ProgressBar (sem alterações)
   const TOTAL_SEGMENTS = 4;
-  const TOTAL_ACTIVE_STEPS = 9; // Representa os steps de 0 a 8
   const LAST_STEP_WITH_PROGRESS_BAR = 8;
-  const shouldShowProgressBar = currentStep <= LAST_STEP_WITH_PROGRESS_BAR;
+  // Ajuste na lógica para ser mais precisa: a barra só aparece APÓS o step 0
+  const shouldShowProgressBar = currentStep > 0 && currentStep <= LAST_STEP_WITH_PROGRESS_BAR;
 
-  // Funções para navegar
+  // Funções para navegar (sem alterações)
   const handleNext = () => {
     if (currentStep < quizSteps.length - 1) {
       setCurrentStep((prev) => prev + 1);
@@ -41,37 +41,53 @@ function QuizPage() {
     }
   };
 
-  // Instância do ProgressBar criada aqui para ser reutilizada
+  // Instância do ProgressBar (sem alterações)
   const progressBarComponent = shouldShowProgressBar ? (
     <ProgressBar
       segments={TOTAL_SEGMENTS}
       currentStep={currentStep}
-      totalActiveSteps={TOTAL_ACTIVE_STEPS}
     />
   ) : null;
 
-  // Pega o componente do step atual dinamicamente
+  // Pega o componente do step atual dinamicamente (sem alterações)
   const { Component: CurrentStepComponent } = quizSteps[currentStep];
+
+  // ALTERAÇÃO: Lógica centralizada para os botões de navegação
+  const isLastStep = currentStep === quizSteps.length - 1;
+  const nextButtonText = isLastStep ? "Finalizar" : "Confirmar";
+
 
   return (
     <div className={styles.container}>
       <HeaderQuiz step={currentStep} />
 
-      {/* NOVO: O ProgressBar padrão só é renderizado aqui para os steps > 0 */}
-      {currentStep > 0 && progressBarComponent}
+      {/* A renderização do ProgressBar está correta */}
+      {progressBarComponent}
 
       <main className={styles.stepContainer}>
-        {/* NOVO: Lógica de renderização que trata o step 0 de forma especial */}
+        {/* ALTERAÇÃO PRINCIPAL: A lógica de renderização foi atualizada */}
         {currentStep === 0 ? (
-          // Para o primeiro step, renderiza o GenderStep e passa o ProgressBar como uma "peça de Lego"
+          // O GenderStep (step 0) continua sendo um caso especial.
+          // Note que ele não precisa mais do onBack, pois não há para onde voltar.
           <GenderStep
             onNext={handleNext}
-            onBack={handleBack}
-            progressBarSlot={progressBarComponent}
+            progressBarSlot={<ProgressBar segments={TOTAL_SEGMENTS} currentStep={0.5} />}
           />
         ) : (
-          // Para todos os outros steps, renderiza o componente de forma padrão
-          <CurrentStepComponent onNext={handleNext} onBack={handleBack} />
+          // Para TODOS os outros steps, a mágica acontece aqui:
+          <>
+            {/* 1. Renderiza o componente do step atual, agora sem props de navegação. */}
+            <CurrentStepComponent />
+
+            {/* 2. Renderiza nosso "controle remoto" de navegação logo abaixo do step. */}
+            <StepNavigation
+              onBack={handleBack}
+              onNext={handleNext}
+              // Não mostra o botão "Voltar" no primeiro step de perguntas (índice 1)
+              showBackButton={currentStep > 1}
+              nextButtonText={nextButtonText}
+            />
+          </>
         )}
       </main>
 

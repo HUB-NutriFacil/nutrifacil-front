@@ -1,16 +1,18 @@
-import styles from "./StepNavigation.module.css"
+import styles from "./StepNavigation.module.css";
+import NavigateButton from "../common/Buttons/NavigateButton";
 
-import NavigateButton from "../common/Buttons/NavigateButton"
-
-function StepNavigation(){
-     onBack, 
-  onNext, 
-  showBackButton = true, // Por padrão, mostra o botão de voltar
-  nextButtonText = "Confirmar" // Texto padrão para o botão de avançar
-
-    return(
-        <div className={style.container}>
-           {showBackButton && (
+// CORREÇÃO: As props são recebidas como um objeto aqui nos parênteses.
+// É aqui que desestruturamos e definimos os valores padrão.
+function StepNavigation({
+  onBack,
+  onNext,
+  showBackButton = true,
+  nextButtonText = "Confirmar",
+}) {
+  return (
+    // CORREÇÃO: Acredito que aqui seja 'styles' (plural) para bater com o nome da importação.
+    <div className={styles.container}>
+      {showBackButton && (
         <NavigateButton onClick={onBack} variant="secondary">
           Voltar
         </NavigateButton>
@@ -18,8 +20,8 @@ function StepNavigation(){
       <NavigateButton onClick={onNext} variant="primary">
         {nextButtonText}
       </NavigateButton>
-        </div>
-    )
+    </div>
+  );
 }
 
-export default StepNavigation
+export default StepNavigation;
