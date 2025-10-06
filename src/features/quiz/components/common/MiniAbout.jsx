@@ -6,7 +6,7 @@ import AboutText from "./Texts/AboutText";
 
 function MiniAbout() {
   return (
-    <div className={styles.conteiner}>
+    <div className={styles.container}>
       <div className={styles.descriptions}>
         <VideoAnimation name="cellphoneNutrition" className={styles.webm} />
         <DescriptiveTitle className={styles.miniAboutTitle}>

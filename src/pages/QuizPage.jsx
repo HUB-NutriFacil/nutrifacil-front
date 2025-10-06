@@ -1,21 +1,23 @@
 import { useState } from "react";
 import styles from "./QuizPage.module.css";
 import HeaderQuiz from "../features/quiz/components/HeaderQuiz";
-import FooterQuiz from "../features/quiz/components/FooterQuiz"
+import FooterQuiz from "../features/quiz/components/FooterQuiz";
+
 // Mantendo o caminho correto para componentes de UI reutilizáveis
-import ProgressBar from "../components/commons/ProgressBar"; 
+import ProgressBar from "../components/commons/ProgressBar";
 
 // 1. Importe todos os seus componentes de step
 import GenderStep from "../features/quiz/components/steps/GenderStep";
+import DietStep from "../features/quiz/components/steps/DietStep";
 // import ObjectiveStep from "../features/quiz/steps/ObjectiveStep"; // Importe os outros quando criá-los
 
 // 2. Crie o "roteiro" do quiz
 const quizSteps = [
   { Component: GenderStep },
+  { Component: DietStep },
   // { Component: ObjectiveStep },
   // Adicione os outros 10 steps aqui na ordem correta
 ];
-
 
 function QuizPage() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -29,18 +31,18 @@ function QuizPage() {
   // Funções para navegar
   const handleNext = () => {
     if (currentStep < quizSteps.length - 1) {
-      setCurrentStep(prev => prev + 1);
+      setCurrentStep((prev) => prev + 1);
     }
   };
 
   const handleBack = () => {
     if (currentStep > 0) {
-      setCurrentStep(prev => prev - 1);
+      setCurrentStep((prev) => prev - 1);
     }
   };
-  
+
   // Instância do ProgressBar criada aqui para ser reutilizada
- const progressBarComponent = shouldShowProgressBar ? (
+  const progressBarComponent = shouldShowProgressBar ? (
     <ProgressBar
       segments={TOTAL_SEGMENTS}
       currentStep={currentStep}
@@ -65,7 +67,7 @@ function QuizPage() {
           <GenderStep
             onNext={handleNext}
             onBack={handleBack}
-            progressBarSlot={progressBarComponent} 
+            progressBarSlot={progressBarComponent}
           />
         ) : (
           // Para todos os outros steps, renderiza o componente de forma padrão
