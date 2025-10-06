@@ -4,16 +4,17 @@ import React from "react";
 // --- MAPA DE ANIMAÇÕES ---
 // 1. Importe cada arquivo .webm aqui.
 //    O bundler vai transformar isso no caminho final do arquivo.
-import CellphoneNutrition from '../../../../assets/animations/cellphoneNutrition.webm';
+import CellphoneNutrition from '../../../../../assets/animations/cellphoneNutrition.webm';
 
 
 //  Dietas:
-import DeFloatDiet from "../../../../assets/animations/Diets/defloat-diet.webm"
-import KetogenicDiet from "../../../../assets/animations/Diets/ketogenic-diet.webm"
-import LowCarbDiet from "../../../../assets/animations/Diets/lowCarb-diet.webm"
-import MediterraneanDiet from "../../../../assets/animations/Diets/mediterranean-diet.webm"
-import NotSureDiet from "../../../../assets/animations/Diets/notSure-diet.webm"
-import VegetarianDiet from "../../../../assets/animations/Diets/vegetarian-diet.webm"
+import DeFloatDiet from "../../../../../assets/animations/Diets/defloat-diet.webm"
+import KetogenicDiet from "../../../../../assets/animations/Diets/ketogenic-diet.webm"
+import LowCarbDiet from "../../../../../assets/animations/Diets/lowCarb-diet.webm"
+import MediterraneanDiet from "../../../../../assets/animations/Diets/mediterranean-diet.webm"
+import NotSureDiet from "../../../../../assets/animations/Diets/notSure-diet.webm"
+import VegetarianDiet from "../../../../../assets/animations/Diets/vegetarian-diet.webm"
+import ComingSoonDiet from "../../../../../assets/animations/Diets/comingsoon-diet.webm"
 
 
 
@@ -25,7 +26,8 @@ const videoMap = {
   lowcarbDiet: LowCarbDiet,
   mediterraneanDiet: MediterraneanDiet,
   notsureDiet: NotSureDiet,
-  vegetarianDiet: VegetarianDiet
+  vegetarianDiet: VegetarianDiet,
+  comingsoonDiet: ComingSoonDiet
 
   // Adicione novas animações aqui!
 };

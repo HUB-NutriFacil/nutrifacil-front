@@ -1,7 +1,7 @@
 import DescriptiveTitle from "../Titles/DescriptiveTitle";
 import styles from "./LargeButton.module.css";
-import iconStyles from "../../Icon/Icon.module.css";
-import Icon from "../../Icon/Icon";
+import iconStyles from "../../Ui/Icon/Icon.module.css";
+import Icon from "../../Ui/Icon/Icon";
 
 // 1. O componente agora recebe a prop 'onClick' junto com as outras
 function LargeButton({ iconName, iconAlt, title, onClick }) {
