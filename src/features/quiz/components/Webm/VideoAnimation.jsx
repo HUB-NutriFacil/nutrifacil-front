@@ -7,10 +7,18 @@ import React from "react";
 import CellphoneNutrition from '../../../../assets/animations/cellphoneNutrition.webm';
 
 
+//  Dietas:
+import DeFloatDiet from "../../../../assets/animations/Diets/defloat-diet.webm"
+import KetogenicDiet from "../../../../assets/animations/Diets/ketogenic-diet.webm"
+import LowC from "../../../../assets/animations/Diets/defloat-diet.webm"
+import DeFloatDiet from "../../../../assets/animations/Diets/defloat-diet.webm"
+
+
 
 // 2. Crie um objeto que mapeia um nome simples (string) ao caminho do vídeo importado.
 const videoMap = {
   cellphoneNutrition: CellphoneNutrition,
+
   // Adicione novas animações aqui!
 };
 

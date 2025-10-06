@@ -11,7 +11,7 @@
 
     border: 1px solid var(--cinza-leve);
     border-radius: 8px;
-    box-shadow: 0 4px 8px var(--sombra-leve);
+    box-shadow: 0 4px 8px var(--sombra-suave);
 
     overflow: hidden;
     cursor: pointer;
