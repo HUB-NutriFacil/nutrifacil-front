@@ -1,25 +1,24 @@
-import styles from "./StepNavigation.module.css";
-import NavigateButton from "../Common/Buttons/NavigateButton";
+import React from 'react';
+// Importe o componente Button, styles, etc.
 
-// CORREÇÃO: As props são recebidas como um objeto aqui nos parênteses.
-// É aqui que desestruturamos e definimos os valores padrão.
-function StepNavigation({
-  onBack,
-  onNext,
-  showBackButton = true,
-  nextButtonText = "Confirmar",
-}) {
+import styles from "./StepNavigation.module.css"
+import NavigateButton from '../Common/Buttons/NavigateButton';
+
+function StepNavigation({ onBack, onNext, showBackButton, nextButtonText }) {
   return (
-    // CORREÇÃO: Acredito que aqui seja 'styles' (plural) para bater com o nome da importação.
     <div className={styles.container}>
       {showBackButton && (
-        <NavigateButton onClick={onBack} variant="secondary">
+        <NavigateButton onClick={onBack} className="back-button">
           Voltar
         </NavigateButton>
       )}
-      <NavigateButton onClick={onNext} variant="primary">
-        {nextButtonText}
-      </NavigateButton>
+
+      {/* A MÁGICA ESTÁ AQUI: Renderiza o botão SÓ SE onNext existir */}
+      {onNext && (
+        <NavigateButton onClick={onNext} className="next-button">
+          {nextButtonText || 'Confirmar'}
+        </NavigateButton>
+      )}
     </div>
   );
 }
