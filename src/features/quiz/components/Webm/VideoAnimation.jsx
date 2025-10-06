@@ -10,14 +10,22 @@ import CellphoneNutrition from '../../../../assets/animations/cellphoneNutrition
 //  Dietas:
 import DeFloatDiet from "../../../../assets/animations/Diets/defloat-diet.webm"
 import KetogenicDiet from "../../../../assets/animations/Diets/ketogenic-diet.webm"
-import LowC from "../../../../assets/animations/Diets/defloat-diet.webm"
-import DeFloatDiet from "../../../../assets/animations/Diets/defloat-diet.webm"
+import LowCarbDiet from "../../../../assets/animations/Diets/lowCarb-diet.webm"
+import MediterraneanDiet from "../../../../assets/animations/Diets/mediterranean-diet.webm"
+import NotSureDiet from "../../../../assets/animations/Diets/notSure-diet.webm"
+import VegetarianDiet from "../../../../assets/animations/Diets/vegetarian-diet.webm"
 
 
 
 // 2. Crie um objeto que mapeia um nome simples (string) ao caminho do vídeo importado.
 const videoMap = {
   cellphoneNutrition: CellphoneNutrition,
+  defloatDiet: DeFloatDiet,
+  ketogenicDiet: KetogenicDiet,
+  lowcarbDiet: LowCarbDiet,
+  mediterraneanDiet: MediterraneanDiet,
+  notsureDiet: NotSureDiet,
+  vegetarianDiet: VegetarianDiet
 
   // Adicione novas animações aqui!
 };
