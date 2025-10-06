@@ -1,0 +1,14 @@
+.subtitle {
+    font-size: 1.17rem;
+    text-align: center;
+    margin: 8px 0px;
+}
+
+
+
+.descriptive {
+    text-align: left;
+    text-transform: capitalize;
+    font-size: 1.25rem;
+    margin: 0px;
+}

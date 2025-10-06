@@ -1,5 +1,5 @@
 import styles from "./StepNavigation.module.css";
-import NavigateButton from "../common/Buttons/NavigateButton";
+import NavigateButton from "../Common/Buttons/NavigateButton";
 
 // CORREÇÃO: As props são recebidas como um objeto aqui nos parênteses.
 // É aqui que desestruturamos e definimos os valores padrão.

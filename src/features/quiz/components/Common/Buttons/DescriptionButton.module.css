@@ -1,0 +1,38 @@
+.container {
+
+    display: flex;
+    align-items: center;
+    padding: 15px;
+
+
+    height: 132px;
+    width: 388px;
+
+
+    border: 1px solid var(--cinza-leve);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--sombra-leve);
+
+    overflow: hidden;
+    cursor: pointer;
+}
+
+
+
+.infos {
+    width: 100%;
+ 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border-left: 3px solid var(--cor-primaria);
+    text-align: left;
+    padding-left: .3125rem;
+}
+
+
+.webm{
+    width: 100px;
+    height: 100px;
+}

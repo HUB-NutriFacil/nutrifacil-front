@@ -4,12 +4,12 @@ import styles from "./QuizPage.module.css";
 import HeaderQuiz from "../features/quiz/components/Headers/HeaderQuiz";
 import FooterQuiz from "../features/quiz/components/Footers/FooterQuiz";
 // ALTERAÇÃO: O caminho correto para o StepNavigation, conforme sua estrutura de pastas
-import StepNavigation from "../features/quiz/components/steps/StepNavigation"; 
+import StepNavigation from "../features/quiz/components/Steps/StepNavigation"; 
 import ProgressBar from "../components/commons/ProgressBar";
 
 // 1. Seus componentes de step
-import GenderStep from "../features/quiz/components/steps/GenderStep";
-import DietStep from "../features/quiz/components/steps/DietStep";
+import GenderStep from "../features/quiz/components/Steps/GenderStep";
+import DietStep from "../features/quiz/components/Steps/DietStep";
 // import ObjectiveStep from "../features/quiz/steps/ObjectiveStep";
 
 // 2. O roteiro do quiz
