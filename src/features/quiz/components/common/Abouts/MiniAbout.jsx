@@ -1,8 +1,8 @@
 import styles from "./MiniAbout.module.css";
 
-import DescriptiveTitle from "./Titles/DescriptiveTitle";
-import VideoAnimation from "../Webm/VideoAnimation";
-import AboutText from "./Texts/AboutText";
+import DescriptiveTitle from "../Titles/DescriptiveTitle";
+import VideoAnimation from "../../Webm/VideoAnimation";
+import AboutText from "../Texts/AboutText";
 
 function MiniAbout() {
   return (

@@ -1,6 +1,6 @@
 import styles from "./HeaderQuiz.module.css";
-import iconStyle from "./Icon/Icon.module.css"
-import Icon from "./Icon/Icon";
+import iconStyle from "../Icon/Icon.module.css"
+import Icon from "../Icon/Icon";
 
 // 1. Adicione { step } como um parâmetro para receber a prop do componente pai.
 function HeaderQuiz({ step }) {

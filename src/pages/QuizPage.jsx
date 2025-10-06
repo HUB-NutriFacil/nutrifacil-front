@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import styles from "./QuizPage.module.css";
 
-import HeaderQuiz from "../features/quiz/components/HeaderQuiz";
-import FooterQuiz from "../features/quiz/components/FooterQuiz";
+import HeaderQuiz from "../features/quiz/components/Headers/HeaderQuiz";
+import FooterQuiz from "../features/quiz/components/Footers/FooterQuiz";
 // ALTERAÇÃO: O caminho correto para o StepNavigation, conforme sua estrutura de pastas
 import StepNavigation from "../features/quiz/components/steps/StepNavigation"; 
 import ProgressBar from "../components/commons/ProgressBar";
