@@ -1,5 +1,14 @@
 .container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: var(--cor-primaria);
 
+    color: var(--cor-texto-principal);
+    font-size: 20px;
+
+    width: 188px;
+    height: 50px;
+    border-radius: 5px;
     
 }

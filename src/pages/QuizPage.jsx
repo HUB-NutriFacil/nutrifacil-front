@@ -90,7 +90,7 @@ useEffect(() => {
             <CurrentStepComponent />
 
             {/* 2. Renderiza nosso "controle remoto" de navegação logo abaixo do step. */}
-            <StepNavigation
+            <StepNavigation 
               onBack={handleBack}
               onNext={handleNext}
               // Não mostra o botão "Voltar" no primeiro step de perguntas (índice 1)
