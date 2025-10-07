@@ -8,11 +8,13 @@ import ProgressBar from "../components/commons/ProgressBar";
 
 import GenderStep from "../features/quiz/components/Steps/GenderStep";
 import DietStep from "../features/quiz/components/Steps/DietStep";
+import WeightStep from "../features/quiz/components/Steps/WeightStep";
 // import ObjectiveStep from "../features/quiz/steps/ObjectiveStep";
 
 const quizSteps = [
   { Component: GenderStep, name: "Gender" },
   { Component: DietStep, name: "Diet" },
+  { Component: WeightStep, name: "Weight"}
   // Adicione os outros steps aqui
 ];
 
