@@ -1,15 +1,16 @@
 import DescriptiveTitle from "../Titles/DescriptiveTitle";
 import styles from "./LargeButton.module.css";
 import iconStyles from "../../Ui/Icon/Icon.module.css";
+import ImageComponent from "../../Ui/Images/ImageComponent"
 import Icon from "../../Ui/Icon/Icon";
 
 // 1. O componente agora recebe a prop 'onClick' junto com as outras
-function LargeButton({ iconName, iconAlt, title, onClick }) {
+function LargeButton({ imageName, iconAlt, title, onClick }) {
   return (
     // 2. A prop 'onClick' é aplicada diretamente na div principal,
     // tornando todo o container clicável.
     <div className={styles.container} onClick={onClick}>
-      <Icon name={iconName} alt={iconAlt} className={iconStyles.person} />
+      <ImageComponent name={iconName} alt={imageAlt} className={iconStyles.person} />
       <div className={styles.footer}>
         <DescriptiveTitle>{title}</DescriptiveTitle>
         <Icon

@@ -5,11 +5,15 @@ import React from "react";
 //    O bundler (como o do Create React App) vai transformar isso no caminho final do arquivo.
 
 import ComingSoonDiet from "../../../../../assets/images/embreve.png"
+import Man from "../../../../../assets/images/man.png"
+import Woman from "../../../../../assets/images/woman.png"
 
 
 // 2. Crie um objeto que mapeia um nome simples (string) ao caminho da imagem importada.
 const imageMap = {
-    comingsoonDiet: ComingSoonDiet
+    comingsoonDiet: ComingSoonDiet,
+    man: Man,
+    woman: Woman
 
   // Adicione novas imagens aqui!
 };

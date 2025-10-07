@@ -40,15 +40,15 @@ function GenderStep({ onNext, progressBarSlot }) {
           Usamos uma arrow function para chamar nossa nova função handleGenderSelect.
         */}
         <LargeButton 
-          iconName="man" 
-          iconAlt="Um homem" 
+          imageName="man" 
+          imageAlt="Um homem" 
           title="Masculino" 
           onClick={() => handleGenderSelect("Masculino")} 
         />
 
         <LargeButton 
-          iconName="woman" 
-          iconAlt="Uma mulher" 
+          imageName="woman" 
+          imageAlt="Uma mulher" 
           title="Feminino" 
           onClick={() => handleGenderSelect("Feminino")} 
         />
