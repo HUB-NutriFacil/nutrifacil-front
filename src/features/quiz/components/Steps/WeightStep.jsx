@@ -6,10 +6,10 @@ function WeightStep() {
   return (
     <div className={styles.container}>
       <TitleQuiz variant="capitalize">
-        Qual tipo de dieta você prefere?
+        Qual o seu peso? (kg)
       </TitleQuiz>
 
-    <Input/>
+    <Input placeholder="Digite o seu peso"/>
 
 
     </div>
