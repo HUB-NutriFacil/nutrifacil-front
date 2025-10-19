@@ -3,7 +3,7 @@ import styles from "./InputStep.module.css";
 import TitleQuiz from "../Common/Titles/TitleQuiz";
 import Input from "../Common/Inputs/Input";
 
-function HeightStep() {
+function AgeStep() {
   const [altura, setAltura] = useState("");
 
   const handleChange = (e) => {
@@ -28,7 +28,7 @@ function HeightStep() {
     }
 
     // 🔒 Impede valores acima de 200 cm (2 metros)
-    if (numericValue > 200) {
+    if (numericValue > 150) {
       return; // trava, mantém o último valor válido
     }
 
@@ -38,22 +38,22 @@ function HeightStep() {
 
   return (
     <div>
-      <TitleQuiz variant="capitalize">Qual a sua altura?</TitleQuiz>
+      <TitleQuiz variant="capitalize">Qual a sua idade?</TitleQuiz>
 
       <div className={styles.container}>
         <Input
           type="text"
-          placeholder="Digite sua altura"
+          placeholder="Digite sua idade"
           value={altura}
           onChange={handleChange}
           inputMode="numeric" // força teclado numérico em mobile
           maxLength={3}
         />
 
-        <span className={styles.unidade}>cm</span>
+  
       </div>
     </div>
   );
 }
 
-export default HeightStep;
+export default AgeStep;

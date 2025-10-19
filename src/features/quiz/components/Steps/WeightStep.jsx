@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./WeightStep.module.css";
+import styles from "./InputStep.module.css";
 import TitleQuiz from "../Common/Titles/TitleQuiz";
 import Input from "../Common/Inputs/Input";
 

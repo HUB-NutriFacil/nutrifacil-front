@@ -10,6 +10,7 @@ import GenderStep from "../features/quiz/components/Steps/GenderStep";
 import DietStep from "../features/quiz/components/Steps/DietStep";
 import WeightStep from "../features/quiz/components/Steps/WeightStep";
 import HeightStep from "../features/quiz/components/Steps/HeightStep";
+import AgeStep from "../features/quiz/components/Steps/AgeStep";
 // import ObjectiveStep from "../features/quiz/steps/ObjectiveStep";
 
 const quizSteps = [
@@ -17,6 +18,7 @@ const quizSteps = [
   { Component: DietStep, name: "Diet" },
   { Component: WeightStep, name: "Weight"},
   { Component: HeightStep, name: "Height"},
+  { Component: AgeStep, name: "Age"},
   // Adicione os outros steps aqui
 ];
 
