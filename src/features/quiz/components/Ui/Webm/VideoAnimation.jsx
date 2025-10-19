@@ -15,6 +15,8 @@ import MediterraneanDiet from "../../../../../assets/animations/Diets/mediterran
 import NotSureDiet from "../../../../../assets/animations/Diets/notSure-diet.webm"
 import VegetarianDiet from "../../../../../assets/animations/Diets/vegetarian-diet.webm"
 import ComingSoonDiet from "../../../../../assets/animations/Diets/comingsoon-diet.webm"
+import HypertrophyObjective from "../../../../../assets/animations/Objectives/hypertrophy-objective.webm"
+import LoseWeightObjective from "../../../../../assets/animations/Objectives/loseWeight-objective.webm"
 
 
 
@@ -27,7 +29,9 @@ const videoMap = {
   mediterraneanDiet: MediterraneanDiet,
   notsureDiet: NotSureDiet,
   vegetarianDiet: VegetarianDiet,
-  comingsoonDiet: ComingSoonDiet
+  comingsoonDiet: ComingSoonDiet,
+  hypertrophyObjective: HypertrophyObjective,
+  loseweightObjective: LoseWeightObjective,
 
   // Adicione novas animações aqui!
 };

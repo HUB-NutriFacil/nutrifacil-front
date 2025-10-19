@@ -3,17 +3,17 @@ import styles from "./SelectStep.module.css";
 import TitleQuiz from "../Common/Titles/TitleQuiz";
 import OptionsContainer from "../OptionsContainer/OptionsContainer";
 import DescriptionButton from "../Common/Buttons/DescriptionButton";
-import { dietOptions } from "../../data/dietOptions";
+import { objectiveOptions } from "../../data/objectiveOptions";
 
 // ALTERAÇÃO 1: O componente agora recebe a prop 'onNext'
-function DietStep({ onNext }) {
+function ObjectiveStep({ onNext }) {
   // Estado para guardar o ID do item selecionado
-  const [selectedDiet, setSelectedDiet] = useState(null);
+  const [selectedObjective, setSelectedObjective] = useState(null);
 
   // Função que será chamada pelo OptionsContainer quando um item for clicado
-  const handleDietSelection = (item) => {
-    setSelectedDiet(item.id);
-    console.log("Dieta selecionada:", item.nome);
+  const handleObjectiveSelection = (item) => {
+    setSelectedObjective(item.id);
+    console.log("Objetivo selecionado:", item.nome);
 
     // ALTERAÇÃO 2: Chamamos a função 'onNext' logo após a seleção.
     // Isso fará o QuizPage avançar para o próximo passo automaticamente.
@@ -25,13 +25,13 @@ function DietStep({ onNext }) {
   return (
     <div className={styles.container}>
       <TitleQuiz variant="capitalize">
-        Qual tipo de dieta você prefere?
+        Qual o seu objetivo?
       </TitleQuiz>
 
       <OptionsContainer
-        items={dietOptions}
-        onSelectionChange={handleDietSelection}
-        selectedValue={selectedDiet}
+        items={objectiveOptions}
+        onSelectionChange={handleObjectiveSelection}
+        selectedValue={selectedObjective}
         selectionType="single"
       >
         {/* Renderização dos botões (sem alterações) */}
@@ -43,4 +43,4 @@ function DietStep({ onNext }) {
   );
 }
 
-export default DietStep;
+export default ObjectiveStep;
