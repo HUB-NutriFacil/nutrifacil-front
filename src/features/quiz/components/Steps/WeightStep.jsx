@@ -29,13 +29,18 @@ function WeightStep() {
     // Converte para número para validar
     const numericValue = parseFloat(value.replace(",", "."));
 
-    // Atualiza normalmente o que o usuário digita
-    setPeso(value);
-
-    // Se o usuário digitou um valor completo fora do limite → reseta
-    if (numericValue > 650) {
-      setPeso();
+    if (isNaN(numericValue)) {
+      setPeso(value);
+      return;
     }
+
+    // Se ultrapassar 650 → não atualiza (trava)
+    if (numericValue > 650) {
+      return; // ❌ impede o setPeso, mantendo o último valor válido
+    }
+
+    // Se estiver dentro do limite → atualiza normalmente
+    setPeso(value);
   };
 
   return (
