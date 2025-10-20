@@ -13,7 +13,9 @@ const ProgressBar = ({ currentStep, segments, totalSteps }) => {
   const stepsPerSegment = totalSteps / segments;
 
   // Progresso total em "unidades de segmento"
-  const rawProgress = (currentStep + 0.5) / stepsPerSegment; // +0.5 deixa a primeira pela metade
+  const rawProgress = ((currentStep + 1) / totalSteps) * segments;
+
+
 
   // Cria o array de segmentos
   const segmentArray = Array.from({ length: segments });

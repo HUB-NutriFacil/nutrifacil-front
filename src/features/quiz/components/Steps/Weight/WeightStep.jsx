@@ -40,6 +40,12 @@ function WeightStep({ onChange }) {
       return; // ❌ impede o setPeso, mantendo o último valor válido
     }
 
+     if (numericValue < 30 || numericValue > 650) {
+       setPeso(value);// ainda mostra o número digitado no input
+      onChange?.(null); // mas não envia valor válido pro QuizPage
+      return;
+    }
+
     // Se estiver dentro do limite → atualiza normalmente
      setPeso(value);
     onChange?.(numericValue); 

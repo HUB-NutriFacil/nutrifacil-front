@@ -15,7 +15,7 @@ function HeightStep({ onChange }) {
     // Se apagar tudo → limpa
     if (value === "") {
       setAltura("");
-      onChange?.(null); 
+      onChange?.(null);
       return;
     }
 
@@ -29,13 +29,14 @@ function HeightStep({ onChange }) {
     }
 
     // 🔒 Impede valores acima de 200 cm (2 metros)
-    if (numericValue > 250) {
-      return; // trava, mantém o último valor válido
+    if (numericValue < 140 || numericValue > 250) {
+      setAltura(value); // ainda mostra o número digitado no input
+      onChange?.(null); // mas não envia valor válido pro QuizPage
+      return;
     }
-
     // Atualiza normalmente se estiver dentro do limite
     setAltura(value);
-     onChange?.(numericValue); 
+    onChange?.(numericValue);
   };
 
   return (

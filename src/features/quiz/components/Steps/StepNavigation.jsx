@@ -1,10 +1,16 @@
-import React from 'react';
+import React from "react";
 // Importe o componente Button, styles, etc.
 
-import styles from "./StepNavigation.module.css"
-import NavigateButton from '../Common/Buttons/NavigateButton';
+import styles from "./StepNavigation.module.css";
+import NavigateButton from "../Common/Buttons/NavigateButton";
 
-function StepNavigation({ onBack, onNext, showBackButton, nextButtonText }) {
+function StepNavigation({
+  onBack,
+  onNext,
+  showBackButton,
+  nextButtonText,
+  disabledNext,
+}) {
   return (
     <div className={styles.container}>
       {showBackButton && (
@@ -15,8 +21,11 @@ function StepNavigation({ onBack, onNext, showBackButton, nextButtonText }) {
 
       {/* A MÁGICA ESTÁ AQUI: Renderiza o botão SÓ SE onNext existir */}
       {onNext && (
-        <NavigateButton onClick={onNext} className="next-button">
-          {nextButtonText || 'Confirmar'}
+        <NavigateButton
+          onClick={!disabledNext ? onNext : undefined}
+          className={`next-button ${disabledNext ? styles.disabled : ""}`}
+        >
+          {nextButtonText || "Confirmar"}
         </NavigateButton>
       )}
     </div>

@@ -32,7 +32,9 @@ function AgeStep({ onChange }) {
     }
 
     // 🔒 Impede valores acima de 150
-    if (numericValue > 150) {
+    if ( numericValue < 10 ||numericValue > 150) {
+       setAge(value);
+        onChange?.(null); 
       return; // trava, mantém o último valor válido
     }
 

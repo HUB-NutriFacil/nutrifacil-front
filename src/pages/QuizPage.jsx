@@ -28,11 +28,10 @@ const quizSteps = [
 ];
 
 function QuizPage() {
-
   const [userData, setUserData] = useState(() => {
-  const saved = localStorage.getItem("quizUserData");
-  return saved ? JSON.parse(saved) : {};
-});
+    const saved = localStorage.getItem("quizUserData");
+    return saved ? JSON.parse(saved) : {};
+  });
 
   const [currentStep, setCurrentStep] = useState(() => {
     const savedStep = localStorage.getItem("quizCurrentStep");
@@ -44,13 +43,12 @@ function QuizPage() {
   }, [currentStep]);
 
   useEffect(() => {
-  localStorage.setItem("quizUserData", JSON.stringify(userData));
-}, [userData]);
+    localStorage.setItem("quizUserData", JSON.stringify(userData));
+  }, [userData]);
 
-const updateUserData = (field, value) => {
-  setUserData((prev) => ({ ...prev, [field]: value }));
-};
-
+  const updateUserData = (field, value) => {
+    setUserData((prev) => ({ ...prev, [field]: value }));
+  };
 
   const TOTAL_SEGMENTS = 4;
   const LAST_STEP_WITH_PROGRESS_BAR = 8;
@@ -97,7 +95,7 @@ const updateUserData = (field, value) => {
           // 🧩 Caso especial: GENDER STEP (sem botão de voltar)
           <GenderStep
             onNext={handleNext}
-             onChange={(value) => updateUserData("gender", value)}
+            onChange={(value) => updateUserData("gender", value)}
             progressBarSlot={
               <ProgressBar
                 segments={TOTAL_SEGMENTS}
@@ -109,8 +107,12 @@ const updateUserData = (field, value) => {
         ) : (
           <>
             {/* Renderiza o Step atual */}
-            <CurrentStepComponent onNext={handleNext} 
-            onChange={(value) => updateUserData(quizSteps[currentStep].name.toLowerCase(), value)}
+            <CurrentStepComponent
+              onNext={handleNext}
+              onChange={(value) =>
+                updateUserData(quizSteps[currentStep].name.toLowerCase(), value)
+              }
+              value={userData[quizSteps[currentStep].name.toLowerCase()] || ""}
             />
 
             {/* Exibe StepNavigation conforme regras */}
@@ -119,6 +121,16 @@ const updateUserData = (field, value) => {
               onNext={!hasInternalNext ? handleNext : undefined}
               showBackButton={currentStep > 0}
               nextButtonText={nextButtonText}
+              disabledNext={(() => {
+                const stepName = quizSteps[currentStep].name;
+
+                // Bloquear se os campos obrigatórios estiverem vazios
+                if (stepName === "Height" && !userData.height) return true;
+                if (stepName === "Weight" && !userData.weight) return true;
+                if (stepName === "Age" && !userData.age) return true;
+
+                return false;
+              })()}
             />
           </>
         )}

@@ -34,8 +34,8 @@
     border: 2px solid var(--cor-primaria);
     background: linear-gradient(
         to right,
-        var(--cor-primaria) 50%,
-        transparent 50%
+        var(--cor-primaria) 26%,
+        transparent 0%
     );
     background-size: 200% 100%;
     background-position: left;
