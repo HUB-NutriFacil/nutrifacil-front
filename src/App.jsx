@@ -18,7 +18,8 @@ function App() {
   return (
     <div className="App">
       {currentPage === "quiz" && <QuizPage onFinish={handleFinishQuiz} />}
-      {currentPage === "sales" && <SalesPage />}
+      {currentPage === "sales" && <SalesPage onRestartQuiz={() => setCurrentPage("quiz")} />
+}
     </div>
   );
 }

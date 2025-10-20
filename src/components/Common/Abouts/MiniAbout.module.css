@@ -24,8 +24,9 @@ gap: 10px;
 
 .miniAboutTitle {
  border-left: 4px solid var(--cor-primaria);
- font-size: 1.5rem;
+ font-size: 1.3rem;
  padding-left: 3px;
+ padding-right: 3px;
  text-transform: none;
  
 }
