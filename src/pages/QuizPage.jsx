@@ -6,14 +6,14 @@ import FooterQuiz from "../features/quiz/components/Footers/FooterQuiz";
 import StepNavigation from "../features/quiz/components/Steps/StepNavigation";
 import ProgressBar from "../components/commons/ProgressBar";
 
-import GenderStep from "../features/quiz/components/Steps/GenderStep";
-import DietStep from "../features/quiz/components/Steps/DietStep";
-import WeightStep from "../features/quiz/components/Steps/WeightStep";
-import HeightStep from "../features/quiz/components/Steps/HeightStep";
-import AgeStep from "../features/quiz/components/Steps/AgeStep";
-import ObjectiveStep from "../features/quiz/components/Steps/ObjectiveStep";
-import NoEatStep from "../features/quiz/components/Steps/NoEatStep";
-
+import GenderStep from "../features/quiz/components/Steps/Gender/GenderStep";
+import DietStep from "../features/quiz/components/Steps/Diet/DietStep";
+import WeightStep from "../features/quiz/components/Steps/Weight/WeightStep";
+import HeightStep from "../features/quiz/components/Steps/Height/HeightStep";
+import AgeStep from "../features/quiz/components/Steps/Age/AgeStep";
+import ObjectiveStep from "../features/quiz/components/Steps/Objective/ObjectiveStep";
+import NoEatStep from "../features/quiz/components/Steps/NoEat/NoEatStep";
+import AlergyStep from "../features/quiz/components/Steps/Alergy/AlergyStep";
 
 const quizSteps = [
   { Component: GenderStep, name: "Gender" },
@@ -23,6 +23,8 @@ const quizSteps = [
   { Component: AgeStep, name: "Age"},
   { Component: ObjectiveStep, name: "Objective"},
   { Component: NoEatStep, name: "NoEat"},
+  {Component: AlergyStep, name: "Alergy"}
+
   // Adicione os outros steps aqui
 ];
 
@@ -96,6 +98,7 @@ function QuizPage() {
               onNext={handleNext}
               showBackButton={true} // Sempre mostra "Voltar" após o DietStep
               nextButtonText={nextButtonText}
+              
             />
           </>
         )}

@@ -1,19 +1,19 @@
 import { useState } from "react";
-import styles from "./SelectStep.module.css";
-import TitleQuiz from "../Common/Titles/TitleQuiz";
-import OptionsContainer from "../OptionsContainer/OptionsContainer";
-import DescriptionButton from "../Common/Buttons/DescriptionButton";
-import { objectiveOptions } from "../../data/objectiveOptions";
+import styles from "../SelectStep.module.css";
+import TitleQuiz from "../../Common/Titles/TitleQuiz";
+import OptionsContainer from "../../OptionsContainer/OptionsContainer";
+import DescriptionButton from "../../Common/Buttons/DescriptionButton";
+import { dietOptions } from "../../../data/dietOptions";
 
 // ALTERAÇÃO 1: O componente agora recebe a prop 'onNext'
-function ObjectiveStep({ onNext }) {
+function DietStep({ onNext }) {
   // Estado para guardar o ID do item selecionado
-  const [selectedObjective, setSelectedObjective] = useState(null);
+  const [selectedDiet, setSelectedDiet] = useState(null);
 
   // Função que será chamada pelo OptionsContainer quando um item for clicado
-  const handleObjectiveSelection = (item) => {
-    setSelectedObjective(item.id);
-    console.log("Objetivo selecionado:", item.nome);
+  const handleDietSelection = (item) => {
+    setSelectedDiet(item.id);
+    console.log("Dieta selecionada:", item.nome);
 
     // ALTERAÇÃO 2: Chamamos a função 'onNext' logo após a seleção.
     // Isso fará o QuizPage avançar para o próximo passo automaticamente.
@@ -25,13 +25,13 @@ function ObjectiveStep({ onNext }) {
   return (
     <div className={styles.container}>
       <TitleQuiz variant="capitalize">
-        Qual o seu objetivo?
+        Qual tipo de dieta você prefere?
       </TitleQuiz>
 
       <OptionsContainer
-        items={objectiveOptions}
-        onSelectionChange={handleObjectiveSelection}
-        selectedValue={selectedObjective}
+        items={dietOptions}
+        onSelectionChange={handleDietSelection}
+        selectedValue={selectedDiet}
         selectionType="single"
       >
         {/* Renderização dos botões (sem alterações) */}
@@ -43,4 +43,4 @@ function ObjectiveStep({ onNext }) {
   );
 }
 
-export default ObjectiveStep;
+export default DietStep;

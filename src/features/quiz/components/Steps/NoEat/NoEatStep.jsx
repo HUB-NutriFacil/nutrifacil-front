@@ -1,16 +1,16 @@
-import TitleQuiz from "../Common/Titles/TitleQuiz";
-import BulletButtonContainer from "../OptionsContainer/BulletButtonContainer";
-
-import {noEatCategories} from "../../data/noEat.js"
+import TitleQuiz from "../../Common/Titles/TitleQuiz.jsx";
+import BulletButtonContainer from "../../OptionsContainer/BulletButtonContainer.jsx";
+import styles from "../SelectStep.module.css"
+import {noEatCategories} from "../../../data/noEatOptions.js"
 
 
 function NoEatStep() {
   return (
-    <div>
-      <TitleQuiz variant="capitalize"> O que você não come? </TitleQuiz>
+  <div className={styles.container}>
+      <TitleQuiz variant="capitalize"> O que você não gostaria de comer? </TitleQuiz>
       
 
-  <div>
+
       <BulletButtonContainer
         titulo="Proteínas"
         opcoes={noEatCategories.proteinas}
@@ -35,7 +35,7 @@ function NoEatStep() {
         titulo="Outros"
         opcoes={noEatCategories.outros}
       />
-    </div>
+
     </div>
   );
 }

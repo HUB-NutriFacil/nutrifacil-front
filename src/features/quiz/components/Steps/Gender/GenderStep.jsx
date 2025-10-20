@@ -1,10 +1,10 @@
 import styles from "./GenderStep.module.css";
 
-import TitleQuiz from "../Common/Titles/TitleQuiz";
-import SubtitleQuiz from "../Common/Titles/SubtitleQuiz";
-import Callout from "../Common/Spotlights/Callout";
-import LargeButton from "../Common/Buttons/LargeButton";
-import MiniAbout from "../Common/Abouts/MiniAbout";
+import TitleQuiz from "../../Common/Titles/TitleQuiz";
+import SubtitleQuiz from "../../Common/Titles/SubtitleQuiz";
+import Callout from "../../Common/Spotlights/Callout";
+import LargeButton from "../../Common/Buttons/LargeButton";
+import MiniAbout from "../../Common/Abouts/MiniAbout";
 
 // ALTERAÇÃO: Removi a prop 'onBack' pois não é usada neste step.
 function GenderStep({ onNext, progressBarSlot }) {

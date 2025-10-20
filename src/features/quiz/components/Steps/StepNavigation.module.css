@@ -5,5 +5,7 @@
     justify-content: space-evenly;
     /* background-color: blue; */
 
+    width: 100%;
+    gap: 8px;
     margin-top: 30px;
 }

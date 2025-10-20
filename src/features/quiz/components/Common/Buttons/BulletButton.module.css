@@ -30,7 +30,7 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  border: 1px solid #000;
+  border: 1.97px solid #000;
   position: relative;
   flex-shrink: 0;
   background: transparent;
@@ -43,8 +43,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: var(--cor-primaria);
 }

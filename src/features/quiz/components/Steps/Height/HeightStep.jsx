@@ -1,9 +1,9 @@
 import { useState } from "react";
-import styles from "./InputStep.module.css";
-import TitleQuiz from "../Common/Titles/TitleQuiz";
-import Input from "../Common/Inputs/Input";
+import styles from "../InputStep.module.css";
+import TitleQuiz from "../../Common/Titles/TitleQuiz";
+import Input from "../../Common/Inputs/Input";
 
-function AgeStep() {
+function HeightStep() {
   const [altura, setAltura] = useState("");
 
   const handleChange = (e) => {
@@ -28,7 +28,7 @@ function AgeStep() {
     }
 
     // 🔒 Impede valores acima de 200 cm (2 metros)
-    if (numericValue > 150) {
+    if (numericValue > 200) {
       return; // trava, mantém o último valor válido
     }
 
@@ -38,22 +38,22 @@ function AgeStep() {
 
   return (
     <div>
-      <TitleQuiz variant="capitalize">Qual a sua idade?</TitleQuiz>
+      <TitleQuiz variant="capitalize">Qual a sua altura?</TitleQuiz>
 
       <div className={styles.container}>
         <Input
           type="text"
-          placeholder="Digite sua idade"
+          placeholder="Digite sua altura"
           value={altura}
           onChange={handleChange}
           inputMode="numeric" // força teclado numérico em mobile
           maxLength={3}
         />
 
-  
+        <span className={styles.unidade}>cm</span>
       </div>
     </div>
   );
 }
 
-export default AgeStep;
+export default HeightStep;
