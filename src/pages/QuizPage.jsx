@@ -18,12 +18,12 @@ import AlergyStep from "../features/quiz/components/Steps/Alergy/AlergyStep";
 const quizSteps = [
   { Component: GenderStep, name: "Gender" },
   { Component: DietStep, name: "Diet" },
-  { Component: WeightStep, name: "Weight"},
-  { Component: HeightStep, name: "Height"},
-  { Component: AgeStep, name: "Age"},
-  { Component: ObjectiveStep, name: "Objective"},
-  { Component: NoEatStep, name: "NoEat"},
-  {Component: AlergyStep, name: "Alergy"}
+  { Component: WeightStep, name: "Weight" },
+  { Component: HeightStep, name: "Height" },
+  { Component: AgeStep, name: "Age" },
+  { Component: ObjectiveStep, name: "Objective" },
+  { Component: NoEatStep, name: "NoEat" },
+  { Component: AlergyStep, name: "Alergy" },
 
   // Adicione os outros steps aqui
 ];
@@ -56,7 +56,11 @@ function QuizPage() {
   };
 
   const progressBarComponent = shouldShowProgressBar ? (
-    <ProgressBar segments={TOTAL_SEGMENTS} currentStep={currentStep} />
+    <ProgressBar
+      segments={TOTAL_SEGMENTS}
+      totalSteps={quizSteps.length}
+      currentStep={currentStep}
+    />
   ) : null;
 
   const { Component: CurrentStepComponent } = quizSteps[currentStep];
@@ -76,7 +80,11 @@ function QuizPage() {
           <GenderStep
             onNext={handleNext}
             progressBarSlot={
-              <ProgressBar segments={TOTAL_SEGMENTS} currentStep={0.5} />
+              <ProgressBar
+                segments={TOTAL_SEGMENTS}
+                totalSteps={quizSteps.length}
+                currentStep={0}
+              />
             }
           />
         ) : currentStep === 1 ? (
@@ -98,7 +106,6 @@ function QuizPage() {
               onNext={handleNext}
               showBackButton={true} // Sempre mostra "Voltar" após o DietStep
               nextButtonText={nextButtonText}
-              
             />
           </>
         )}
