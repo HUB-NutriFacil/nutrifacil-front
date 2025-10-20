@@ -1,3 +1,4 @@
+// src/pages/QuizPage.jsx
 import { useState, useEffect } from "react";
 import styles from "./QuizPage.module.css";
 
@@ -24,11 +25,15 @@ const quizSteps = [
   { Component: ObjectiveStep, name: "Objective" },
   { Component: NoEatStep, name: "NoEat" },
   { Component: AlergyStep, name: "Alergy" },
-
-  // Adicione os outros steps aqui
 ];
 
 function QuizPage() {
+
+  const [userData, setUserData] = useState(() => {
+  const saved = localStorage.getItem("quizUserData");
+  return saved ? JSON.parse(saved) : {};
+});
+
   const [currentStep, setCurrentStep] = useState(() => {
     const savedStep = localStorage.getItem("quizCurrentStep");
     return savedStep !== null ? parseInt(savedStep, 10) : 0;
@@ -37,6 +42,15 @@ function QuizPage() {
   useEffect(() => {
     localStorage.setItem("quizCurrentStep", currentStep);
   }, [currentStep]);
+
+  useEffect(() => {
+  localStorage.setItem("quizUserData", JSON.stringify(userData));
+}, [userData]);
+
+const updateUserData = (field, value) => {
+  setUserData((prev) => ({ ...prev, [field]: value }));
+};
+
 
   const TOTAL_SEGMENTS = 4;
   const LAST_STEP_WITH_PROGRESS_BAR = 8;
@@ -64,9 +78,13 @@ function QuizPage() {
   ) : null;
 
   const { Component: CurrentStepComponent } = quizSteps[currentStep];
-
   const isLastStep = currentStep === quizSteps.length - 1;
   const nextButtonText = isLastStep ? "Finalizar" : "Confirmar";
+
+  // Steps onde o avanço é interno (não precisa do botão Confirmar)
+  const stepsWithInternalNext = ["Gender", "Diet", "Objective"];
+  const currentStepName = quizSteps[currentStep].name;
+  const hasInternalNext = stepsWithInternalNext.includes(currentStepName);
 
   return (
     <div className={styles.container}>
@@ -76,7 +94,7 @@ function QuizPage() {
 
       <main className={styles.stepContainer}>
         {currentStep === 0 ? (
-          // CASO 1: GenderStep (sem alterações)
+          // 🧩 Caso especial: GENDER STEP (sem botão de voltar)
           <GenderStep
             onNext={handleNext}
             progressBarSlot={
@@ -87,33 +105,35 @@ function QuizPage() {
               />
             }
           />
-        ) : currentStep === 1 ? (
-          // CASO 2 (NOVO): DietStep - A ação de avançar está DENTRO do componente.
-          <>
-            <DietStep onNext={handleNext} />
-            <StepNavigation
-              onBack={handleBack}
-              showBackButton={true}
-              // Note que NÃO passamos onNext ou nextButtonText aqui
-            />
-          </>
         ) : (
-          // CASO 3: Todos os outros steps (lógica anterior)
           <>
-            <CurrentStepComponent />
+            {/* Renderiza o Step atual */}
+            <CurrentStepComponent onNext={handleNext} 
+            onChange={(value) => updateUserData(quizSteps[currentStep].name.toLowerCase(), value)}
+            />
+
+            {/* Exibe StepNavigation conforme regras */}
             <StepNavigation
-              onBack={handleBack}
-              onNext={handleNext}
-              showBackButton={true} // Sempre mostra "Voltar" após o DietStep
+              onBack={currentStep > 0 ? handleBack : undefined}
+              onNext={!hasInternalNext ? handleNext : undefined}
+              showBackButton={currentStep > 0}
               nextButtonText={nextButtonText}
             />
           </>
         )}
       </main>
 
-      <FooterQuiz> Todos os direitos Reservados | NutriFácil™ </FooterQuiz>
+      <FooterQuiz>Todos os direitos Reservados | NutriFácil™</FooterQuiz>
     </div>
   );
 }
 
 export default QuizPage;
+
+/*
+20/10/2025 - Navegação dinâmica por step (voltar e avançar configuráveis)
+--------------------------------------------
+Define que apenas alguns steps (Gender, Diet, Objective)
+avançam internamente; demais usam o StepNavigation padrão.
+by: gabbu (github: gabriellesote)
+*/

@@ -3,7 +3,7 @@ import styles from "../InputStep.module.css";
 import TitleQuiz from "../../Common/Titles/TitleQuiz";
 import Input from "../../Common/Inputs/Input";
 
-function WeightStep() {
+function WeightStep({ onNext, onChange }) {
   const [peso, setPeso] = useState("");
 
   const handleChange = (e) => {
@@ -40,7 +40,8 @@ function WeightStep() {
     }
 
     // Se estiver dentro do limite → atualiza normalmente
-    setPeso(value);
+     setPeso(value);
+    onChange?.(numericValue); 
   };
 
   return (
