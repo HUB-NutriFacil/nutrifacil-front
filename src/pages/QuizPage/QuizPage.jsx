@@ -2,19 +2,19 @@
 import { useState, useEffect } from "react";
 import styles from "./QuizPage.module.css";
 
-import HeaderQuiz from "../features/quiz/components/Headers/HeaderQuiz";
-import FooterQuiz from "../features/quiz/components/Footers/FooterQuiz";
-import StepNavigation from "../features/quiz/components/Steps/StepNavigation";
-import ProgressBar from "../components/commons/ProgressBar";
+import HeaderQuiz from "../../features/quiz/components/Headers/HeaderQuiz";
+import FooterQuiz from "../../features/quiz/components/Footers/FooterQuiz";
+import StepNavigation from "../../features/quiz/components/Steps/StepNavigation";
+import ProgressBar from "../../components/commons/ProgressBar";
 
-import GenderStep from "../features/quiz/components/Steps/Gender/GenderStep";
-import DietStep from "../features/quiz/components/Steps/Diet/DietStep";
-import WeightStep from "../features/quiz/components/Steps/Weight/WeightStep";
-import HeightStep from "../features/quiz/components/Steps/Height/HeightStep";
-import AgeStep from "../features/quiz/components/Steps/Age/AgeStep";
-import ObjectiveStep from "../features/quiz/components/Steps/Objective/ObjectiveStep";
-import NoEatStep from "../features/quiz/components/Steps/NoEat/NoEatStep";
-import AlergyStep from "../features/quiz/components/Steps/Alergy/AlergyStep";
+import GenderStep from "../../features/quiz/components/Steps/Gender/GenderStep";
+import DietStep from "../../features/quiz/components/Steps/Diet/DietStep";
+import WeightStep from "../../features/quiz/components/Steps/Weight/WeightStep";
+import HeightStep from "../../features/quiz/components/Steps/Height/HeightStep";
+import AgeStep from "../../features/quiz/components/Steps/Age/AgeStep";
+import ObjectiveStep from "../../features/quiz/components/Steps/Objective/ObjectiveStep";
+import NoEatStep from "../../features/quiz/components/Steps/NoEat/NoEatStep";
+import AlergyStep from "../../features/quiz/components/Steps/Alergy/AlergyStep";
 
 const quizSteps = [
   { Component: GenderStep, name: "Gender" },

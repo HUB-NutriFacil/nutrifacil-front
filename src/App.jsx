@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import QuizPage from "./pages/QuizPage";
+import QuizPage from "./pages/QuizPage/QuizPage";
 
 function App() {
   const [count, setCount] = useState(0);
