@@ -4,7 +4,7 @@ import styles from "./BulletButtonContainer.module.css";
 import BulletButton from "../Common/Buttons/BulletButton";
 import DescriptiveTitle from "../Common/Titles/DescriptiveTitle";
 
-function BulletButtonContainer({ titulo, opcoes }) {
+function BulletButtonContainer({ titulo, opcoes,  selecionados = [], onToggle }) {
   const [selecionadas, setSelecionadas] = useState([]);
 
   const toggleOpcao = (opcao) => {
@@ -23,8 +23,8 @@ function BulletButtonContainer({ titulo, opcoes }) {
         {opcoes.map((opcao) => (
           <BulletButton
             key={opcao}
-            isSelected={selecionadas.includes(opcao)}
-            onClick={() => toggleOpcao(opcao)}
+            isSelected={selecionados.includes(opcao)} // usa o estado do pai
+            onClick={() => onToggle(opcao)} // notifica o pai
           >
             {opcao}
           </BulletButton>

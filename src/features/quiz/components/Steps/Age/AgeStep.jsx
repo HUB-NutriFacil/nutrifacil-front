@@ -4,9 +4,9 @@ import TitleQuiz from "../../../components/Common/Titles/TitleQuiz";
 import Input from "../../../components/Common/Inputs/Input";
 
 function AgeStep({ onChange }) {
-  const [altura, setAltura] = useState(() => {
+  const [age, setAge] = useState(() => {
     // 🔁 Recupera do localStorage ao montar
-    const saved = localStorage.getItem("idade");
+    const saved = localStorage.getItem("age");
     return saved ? saved : "";
   });
 
@@ -18,7 +18,7 @@ function AgeStep({ onChange }) {
 
     // Se apagar tudo → limpa
     if (value === "") {
-      setAltura("");
+      setAge("");
       return;
     }
 
@@ -27,17 +27,18 @@ function AgeStep({ onChange }) {
 
     // Se não for número → atualiza direto
     if (isNaN(numericValue)) {
-      setAltura(value);
+      setAge(value);
       return;
     }
 
-    // 🔒 Impede valores acima de 200 cm (2 metros)
+    // 🔒 Impede valores acima de 150
     if (numericValue > 150) {
       return; // trava, mantém o último valor válido
     }
 
     // Atualiza normalmente se estiver dentro do limite
-    setAltura(value);
+    setAge(value);
+    onChange?.(numericValue)
   };
 
   return (
@@ -48,7 +49,7 @@ function AgeStep({ onChange }) {
         <Input
           type="text"
           placeholder="Digite sua idade"
-          value={altura}
+          value={age}
           onChange={handleChange}
           inputMode="numeric" // força teclado numérico em mobile
           maxLength={3}
