@@ -23,7 +23,7 @@ function StepNavigation({
       {onNext && (
         <NavigateButton
           onClick={!disabledNext ? onNext : undefined}
-          className={`next-button ${disabledNext ? styles.disabled : ""}`}
+          disabled={disabledNext} 
         >
           {nextButtonText || "Confirmar"}
         </NavigateButton>
