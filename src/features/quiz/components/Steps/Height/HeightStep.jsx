@@ -28,7 +28,7 @@ function HeightStep() {
     }
 
     // 🔒 Impede valores acima de 200 cm (2 metros)
-    if (numericValue > 200) {
+    if (numericValue > 250) {
       return; // trava, mantém o último valor válido
     }
 

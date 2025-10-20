@@ -6,21 +6,33 @@ import styles from "./TagInput.module.css";
 /**
  * Componente reutilizável de input com tags (chips).
  *
- * Props:
- * - placeholder: string → texto exibido no input
- * - initialTags: array → lista inicial de tags
- * - onChange: function(tags[]) → callback quando a lista muda
- * - limit: number → limite máximo de tags (padrão: 10)
+ * Regras:
+ * - Não permite números, emojis nem caracteres especiais.
+ * - Aceita letras com acentuação e espaços.
  */
 function TagInput({ placeholder, initialTags = [], onChange, limit = 10 }) {
   const [tags, setTags] = useState(initialTags);
   const [inputValue, setInputValue] = useState("");
   const [limitReached, setLimitReached] = useState(false);
+  const [invalidInput, setInvalidInput] = useState(false);
+
+  // Regex que permite apenas letras e espaços (inclusive acentos)
+  const validTagRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
 
   const addTag = (value) => {
     const trimmed = value.trim();
+
     if (!trimmed) return;
 
+    // ❌ Bloqueia tags inválidas
+    if (!validTagRegex.test(trimmed)) {
+      setInvalidInput(true);
+      setTimeout(() => setInvalidInput(false), 2000);
+      setInputValue("");
+      return;
+    }
+
+    // Evita duplicados
     if (tags.includes(trimmed)) {
       setInputValue("");
       return;
@@ -59,8 +71,6 @@ function TagInput({ placeholder, initialTags = [], onChange, limit = 10 }) {
         limitReached ? styles.limitReached : ""
       }`}
     >
-      
-
       {tags.length < limit && (
         <Input
           type="text"
@@ -70,6 +80,7 @@ function TagInput({ placeholder, initialTags = [], onChange, limit = 10 }) {
           onKeyDown={handleKeyDown}
         />
       )}
+
       {tags.map((tag) => (
         <span key={tag} className={styles.tag}>
           {tag}
@@ -86,6 +97,12 @@ function TagInput({ placeholder, initialTags = [], onChange, limit = 10 }) {
       {limitReached && (
         <span className={styles.limitText}>
           Limite de {limit} itens atingido.
+        </span>
+      )}
+
+      {invalidInput && (
+        <span className={styles.limitText}>
+          Somente letras e espaços são permitidos.
         </span>
       )}
     </div>
