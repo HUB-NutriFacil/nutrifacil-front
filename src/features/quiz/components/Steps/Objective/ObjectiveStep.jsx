@@ -6,7 +6,7 @@ import DescriptionButton from "../../../components/Common/Buttons/DescriptionBut
 import { objectiveOptions } from "../../../data/objectiveOptions";
 
 // ALTERAÇÃO 1: O componente agora recebe a prop 'onNext'
-function ObjectiveStep({ onNext }) {
+function ObjectiveStep({ onNext, onChange}) {
   // Estado para guardar o ID do item selecionado
   const [selectedObjective, setSelectedObjective] = useState(null);
 
@@ -15,7 +15,12 @@ function ObjectiveStep({ onNext }) {
     setSelectedObjective(item.id);
     console.log("Objetivo selecionado:", item.nome);
 
-    // ALTERAÇÃO 2: Chamamos a função 'onNext' logo após a seleção.
+
+      onChange?.({
+      id: item.id,
+      nome: item.nome,
+    });
+    
     // Isso fará o QuizPage avançar para o próximo passo automaticamente.
     if (onNext) {
       onNext();
