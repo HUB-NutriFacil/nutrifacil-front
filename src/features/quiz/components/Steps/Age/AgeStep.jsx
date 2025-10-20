@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "../InputStep.module.css";
-import TitleQuiz from "../../../components/Common/Titles/TitleQuiz";
-import Input from "../../../components/Common/Inputs/Input";
+import TitleQuiz from "../../../../../components/Common/Titles/TitleQuiz";
+import Input from "../../../../../components/Common/Inputs/Input";
 
 function AgeStep({ onChange }) {
   const [age, setAge] = useState(() => {

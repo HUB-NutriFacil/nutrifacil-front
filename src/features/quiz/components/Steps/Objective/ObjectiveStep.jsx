@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styles from "../SelectStep.module.css";
-import TitleQuiz from "../../../components/Common/Titles/TitleQuiz";
+import TitleQuiz from "../../../../../components/Common/Titles/TitleQuiz";
 import OptionsContainer from "../../../components/OptionsContainer/OptionsContainer";
-import DescriptionButton from "../../../components/Common/Buttons/DescriptionButton";
+import DescriptionButton from "../../../../../components/Common/Buttons/DescriptionButton";
 import { objectiveOptions } from "../../../data/objectiveOptions";
 
 // ALTERAÇÃO 1: O componente agora recebe a prop 'onNext'

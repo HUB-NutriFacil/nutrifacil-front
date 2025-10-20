@@ -1,11 +1,11 @@
 // src/features/quiz/components/Steps/AlergyStep.jsx
-import TitleQuiz from "../../Common/Titles/TitleQuiz";
-import DescriptiveTitle from "../../Common/Titles/DescriptiveTitle";
+import TitleQuiz from "../../../../../components/Common/Titles/TitleQuiz";
+import DescriptiveTitle from "../../../../../components/Common/Titles/DescriptiveTitle";
 import BulletButtonContainer from "../../OptionsContainer/BulletButtonContainer";
 
 import { alergiesOptions } from "../../../data/alergiesOptions";
 import styles from "../SelectStep.module.css";
-import TagInput from "../../Common/Inputs/TagInput";
+import TagInput from "../../../../../components/Common/Inputs/TagInput";
 import { useState } from "react";
 
 function AlergyStep({ onChange }) {

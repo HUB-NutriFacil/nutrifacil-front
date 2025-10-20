@@ -2,7 +2,7 @@ import React from "react";
 // Importe o componente Button, styles, etc.
 
 import styles from "./StepNavigation.module.css";
-import NavigateButton from "../Common/Buttons/NavigateButton";
+import NavigateButton from "../../../../components/Common/Buttons/NavigateButton";
 
 function StepNavigation({
   onBack,

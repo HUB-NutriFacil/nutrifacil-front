@@ -4,9 +4,9 @@ import React from "react";
 // 1. Importe cada arquivo de imagem aqui.
 //    O bundler (como o do Create React App) vai transformar isso no caminho final do arquivo.
 
-import ComingSoonDiet from "../../../../../assets/images/embreve.png"
-import Man from "../../../../../assets/images/man.png"
-import Woman from "../../../../../assets/images/woman.png"
+import ComingSoonDiet from "../../../../src/assets/images/embreve.png"
+import Man from "../../../../src/assets/images/man.png"
+import Woman from "../../../../src/assets/images/woman.png"
 
 
 // 2. Crie um objeto que mapeia um nome simples (string) ao caminho da imagem importada.

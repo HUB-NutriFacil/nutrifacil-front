@@ -1,4 +1,4 @@
-import TitleQuiz from "../../Common/Titles/TitleQuiz.jsx";
+import TitleQuiz from "../../../../../components/Common/Titles/TitleQuiz.jsx";
 import BulletButtonContainer from "../../OptionsContainer/BulletButtonContainer.jsx";
 import styles from "../SelectStep.module.css"
 import {noEatCategories} from "../../../data/noEatOptions.js"

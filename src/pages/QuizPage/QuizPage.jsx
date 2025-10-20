@@ -2,10 +2,10 @@
 import { useState, useEffect } from "react";
 import styles from "../Pages.module.css";
 
-import HeaderQuiz from "../../features/quiz/components/Headers/HeaderQuiz";
-import FooterQuiz from "../../features/quiz/components/Footers/FooterQuiz";
+import HeaderQuiz from "../../components/Headers/HeaderQuiz";
+import FooterQuiz from "../../components/Footers/FooterQuiz";
 import StepNavigation from "../../features/quiz/components/Steps/StepNavigation";
-import ProgressBar from "../../components/commons/ProgressBar";
+import ProgressBar from "../../components/Common/ProgressBar/ProgressBar";
 
 import GenderStep from "../../features/quiz/components/Steps/Gender/GenderStep";
 import DietStep from "../../features/quiz/components/Steps/Diet/DietStep";

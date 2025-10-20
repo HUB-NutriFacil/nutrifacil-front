@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "../InputStep.module.css";
-import TitleQuiz from "../../Common/Titles/TitleQuiz";
-import Input from "../../Common/Inputs/Input";
+import TitleQuiz from "../../../../../components/Common/Titles/TitleQuiz";
+import Input from "../../../../../components/Common/Inputs/Input";
 
 function WeightStep({ onChange }) {
   const [peso, setPeso] = useState("");

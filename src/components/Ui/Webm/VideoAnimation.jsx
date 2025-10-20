@@ -4,19 +4,19 @@ import React from "react";
 // --- MAPA DE ANIMAÇÕES ---
 // 1. Importe cada arquivo .webm aqui.
 //    O bundler vai transformar isso no caminho final do arquivo.
-import CellphoneNutrition from '../../../../../assets/animations/cellphoneNutrition.webm';
+import CellphoneNutrition from '../../../../src/assets/animations/cellphoneNutrition.webm';
 
 
 //  Dietas:
-import DeFloatDiet from "../../../../../assets/animations/Diets/defloat-diet.webm"
-import KetogenicDiet from "../../../../../assets/animations/Diets/ketogenic-diet.webm"
-import LowCarbDiet from "../../../../../assets/animations/Diets/lowCarb-diet.webm"
-import MediterraneanDiet from "../../../../../assets/animations/Diets/mediterranean-diet.webm"
-import NotSureDiet from "../../../../../assets/animations/Diets/notSure-diet.webm"
-import VegetarianDiet from "../../../../../assets/animations/Diets/vegetarian-diet.webm"
-import ComingSoonDiet from "../../../../../assets/animations/Diets/comingsoon-diet.webm"
-import HypertrophyObjective from "../../../../../assets/animations/Objectives/hypertrophy-objective.webm"
-import LoseWeightObjective from "../../../../../assets/animations/Objectives/loseWeight-objective.webm"
+import DeFloatDiet from "../../../../src/assets/animations/Diets/defloat-diet.webm"
+import KetogenicDiet from "../../../../src/assets/animations/Diets/ketogenic-diet.webm"
+import LowCarbDiet from "../../../../src/assets/animations/Diets/lowCarb-diet.webm"
+import MediterraneanDiet from "../../../../src/assets/animations/Diets/mediterranean-diet.webm"
+import NotSureDiet from "../../../../src/assets/animations/Diets/notSure-diet.webm"
+import VegetarianDiet from "../../../../src/assets/animations/Diets/vegetarian-diet.webm"
+import ComingSoonDiet from "../../../../src/assets/animations/Diets/comingsoon-diet.webm"
+import HypertrophyObjective from "../../../../src/assets/animations/Objectives/hypertrophy-objective.webm"
+import LoseWeightObjective from "../../../../src/assets/animations/Objectives/loseWeight-objective.webm"
 
 
 

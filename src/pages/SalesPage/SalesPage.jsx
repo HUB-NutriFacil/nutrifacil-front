@@ -1,13 +1,23 @@
 import styles from "../Pages.module.css";
-import HeaderQuiz from "../../features/quiz/components/Headers/HeaderQuiz";
-import FooterQuiz from "../../features/quiz/components/Footers/FooterQuiz";
-import TitleQuiz from "../../features/quiz/components/Common/Titles/TitleQuiz";
+import HeaderQuiz from "../../components/Headers/HeaderQuiz";
+import TitleQuiz from "../../components/Common/Titles/TitleQuiz";
+import FooterQuiz from "../../components/Footers/FooterQuiz";
 
-function SalesPage() {
+function SalesPage({ onRestartQuiz }) {
+  const handleRestart = () => {
+    // 🧹 Limpa tudo que o quiz usou
+    localStorage.removeItem("quizUserData");
+    localStorage.removeItem("quizCurrentStep");
+    localStorage.removeItem("quizFinished");
+
+    // Volta para o App
+    if (onRestartQuiz) onRestartQuiz();
+  };
+
   return (
     <div className={styles.container}>
-      <HeaderQuiz/>
-    <TitleQuiz variant="capitalize"> Seu plano está pronto! </TitleQuiz>
+      <HeaderQuiz />
+      <TitleQuiz variant="capitalize"> Seu plano está pronto! </TitleQuiz>
 
       <FooterQuiz>Todos os direitos Reservados | NutriFácil™</FooterQuiz>
     </div>
