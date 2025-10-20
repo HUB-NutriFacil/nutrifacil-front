@@ -1,6 +1,6 @@
 // src/pages/QuizPage.jsx
 import { useState, useEffect } from "react";
-import styles from "./QuizPage.module.css";
+import styles from "../Pages.module.css";
 
 import HeaderQuiz from "../../features/quiz/components/Headers/HeaderQuiz";
 import FooterQuiz from "../../features/quiz/components/Footers/FooterQuiz";
@@ -16,6 +16,9 @@ import ObjectiveStep from "../../features/quiz/components/Steps/Objective/Object
 import NoEatStep from "../../features/quiz/components/Steps/NoEat/NoEatStep";
 import AlergyStep from "../../features/quiz/components/Steps/Alergy/AlergyStep";
 
+
+
+
 const quizSteps = [
   { Component: GenderStep, name: "Gender" },
   { Component: DietStep, name: "Diet" },
@@ -27,7 +30,7 @@ const quizSteps = [
   { Component: AlergyStep, name: "Alergy" },
 ];
 
-function QuizPage() {
+function QuizPage({ onFinish }) {
   const [userData, setUserData] = useState(() => {
     const saved = localStorage.getItem("quizUserData");
     return saved ? JSON.parse(saved) : {};
@@ -55,10 +58,17 @@ function QuizPage() {
   const shouldShowProgressBar =
     currentStep > 0 && currentStep <= LAST_STEP_WITH_PROGRESS_BAR;
 
-  const handleNext = () => {
-    if (currentStep < quizSteps.length - 1) {
-      setCurrentStep((prev) => prev + 1);
+   const handleNext = () => {
+    const isLastStep = currentStep === quizSteps.length - 1;
+
+    if (isLastStep) {
+      // Chama a função passada pelo App.jsx
+      if (onFinish) onFinish();
+      return;
     }
+
+    // Avança para o próximo step normalmente
+    setCurrentStep((prev) => prev + 1);
   };
 
   const handleBack = () => {
