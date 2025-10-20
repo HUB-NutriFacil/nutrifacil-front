@@ -3,7 +3,7 @@ import styles from "../InputStep.module.css";
 import TitleQuiz from "../../Common/Titles/TitleQuiz";
 import Input from "../../Common/Inputs/Input";
 
-function HeightStep() {
+function HeightStep({ onChange }) {
   const [altura, setAltura] = useState("");
 
   const handleChange = (e) => {
@@ -15,6 +15,7 @@ function HeightStep() {
     // Se apagar tudo → limpa
     if (value === "") {
       setAltura("");
+      onChange?.(null); 
       return;
     }
 
@@ -34,6 +35,7 @@ function HeightStep() {
 
     // Atualiza normalmente se estiver dentro do limite
     setAltura(value);
+     onChange?.(numericValue); 
   };
 
   return (

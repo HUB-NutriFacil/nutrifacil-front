@@ -3,8 +3,12 @@ import styles from "../InputStep.module.css";
 import TitleQuiz from "../../../components/Common/Titles/TitleQuiz";
 import Input from "../../../components/Common/Inputs/Input";
 
-function AgeStep() {
-  const [altura, setAltura] = useState("");
+function AgeStep({ onChange }) {
+  const [altura, setAltura] = useState(() => {
+    // 🔁 Recupera do localStorage ao montar
+    const saved = localStorage.getItem("idade");
+    return saved ? saved : "";
+  });
 
   const handleChange = (e) => {
     let value = e.target.value;

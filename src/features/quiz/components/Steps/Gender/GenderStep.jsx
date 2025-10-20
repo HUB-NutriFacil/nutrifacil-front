@@ -7,15 +7,16 @@ import LargeButton from "../../Common/Buttons/LargeButton";
 import MiniAbout from "../../Common/Abouts/MiniAbout";
 
 // ALTERAÇÃO: Removi a prop 'onBack' pois não é usada neste step.
-function GenderStep({ onNext, progressBarSlot }) {
+function GenderStep({ onNext, onChange,progressBarSlot }) {
 
   // NOVO: Uma função para lidar com a seleção de gênero.
   // Isso torna o código mais limpo e preparado para o futuro.
   const handleGenderSelect = (selectedGender) => {
     console.log(`Gênero selecionado: ${selectedGender}`);
 
-    // Futuramente, é aqui que você vai salvar a escolha do usuário
-    // em um estado geral do quiz.
+    /// 🧠 Salva o gênero no estado global (via QuizPage)
+    onChange(selectedGender);
+
     
     // Chama a função recebida via props para avançar para o próximo step.
     onNext(); 

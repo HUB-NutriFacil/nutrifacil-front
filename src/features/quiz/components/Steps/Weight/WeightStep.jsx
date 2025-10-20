@@ -3,7 +3,7 @@ import styles from "../InputStep.module.css";
 import TitleQuiz from "../../Common/Titles/TitleQuiz";
 import Input from "../../Common/Inputs/Input";
 
-function WeightStep({ onNext, onChange }) {
+function WeightStep({ onChange }) {
   const [peso, setPeso] = useState("");
 
   const handleChange = (e) => {
@@ -23,6 +23,7 @@ function WeightStep({ onNext, onChange }) {
     // Permite apagar tudo
     if (value === "," || value === "") {
       setPeso("");
+      onChange?.(null); 
       return;
     }
 

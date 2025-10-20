@@ -6,7 +6,7 @@ import DescriptionButton from "../../Common/Buttons/DescriptionButton";
 import { dietOptions } from "../../../data/dietOptions";
 
 // ALTERAÇÃO 1: O componente agora recebe a prop 'onNext'
-function DietStep({ onNext }) {
+function DietStep({ onNext, onChange }) {
   // Estado para guardar o ID do item selecionado
   const [selectedDiet, setSelectedDiet] = useState(null);
 
@@ -15,7 +15,13 @@ function DietStep({ onNext }) {
     setSelectedDiet(item.id);
     console.log("Dieta selecionada:", item.nome);
 
-    // ALTERAÇÃO 2: Chamamos a função 'onNext' logo após a seleção.
+    const selectedData = {
+      id: item.id,
+      nome: item.nome,
+    };
+    // Salva no estado global e no localStorage
+    onChange(selectedData);
+
     // Isso fará o QuizPage avançar para o próximo passo automaticamente.
     if (onNext) {
       onNext();

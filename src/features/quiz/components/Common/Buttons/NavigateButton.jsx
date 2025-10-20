@@ -1,11 +1,11 @@
-import styles from "./NavigateButton.module.css"
+import styles from "./NavigateButton.module.css";
 
-function NavigateButton({children}){
-    return(
-        <div className={styles.container}>
-            {children}
-        </div>
-    )
+function NavigateButton({ children, onClick }) {
+  return (
+    <button type="button" onClick={onClick} className={styles.container}>
+      {children}
+    </button>
+  );
 }
 
-export default NavigateButton
+export default NavigateButton;

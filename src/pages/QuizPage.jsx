@@ -97,6 +97,7 @@ const updateUserData = (field, value) => {
           // 🧩 Caso especial: GENDER STEP (sem botão de voltar)
           <GenderStep
             onNext={handleNext}
+             onChange={(value) => updateUserData("gender", value)}
             progressBarSlot={
               <ProgressBar
                 segments={TOTAL_SEGMENTS}
