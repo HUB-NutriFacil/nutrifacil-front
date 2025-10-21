@@ -18,7 +18,7 @@
     justify-content: center;
     align-items: center;
 
-    gap: 20px;
+    gap: 10px;
 }
 
 .buttons{
@@ -30,4 +30,13 @@
     background-color: blue; */
 }
 
- 
+ .errorText{
+    color: red;
+    margin-top: 2px;
+    /* background-color: blue; */
+ }
+
+ .fieldWrapper{
+    /* background-color: brown; */
+    height: 65px;
+ }

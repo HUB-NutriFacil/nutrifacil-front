@@ -1,5 +1,6 @@
 // src/features/quiz/pages/CheckoutPage.jsx
 import { useEffect, useState } from "react";
+
 import styles from "./CheckoutPage.module.css";
 import HeaderQuiz from "../../components/Headers/HeaderQuiz";
 import FooterQuiz from "../../components/Footers/FooterQuiz";
@@ -17,12 +18,12 @@ function CheckoutPage({ onBackToSales }) {
     whatsapp: "",
   });
 
-  // 🔹 Pega dados anteriores do quiz ao montar
+  const [errors, setErrors] = useState({});
+
+  // 🔹 Carrega dados salvos
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("quizUserData") || "{}");
     setDados(saved);
-
-    // Se o usuário já preencheu o checkout antes, recupera
     setForm({
       nome: saved.nome || "",
       email: saved.email || "",
@@ -30,14 +31,65 @@ function CheckoutPage({ onBackToSales }) {
     });
   }, []);
 
-  // 🔹 Atualiza o estado conforme o usuário digita
+  // 🔹 Filtros e atualizações
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    let sanitized = value;
+
+    if (name === "nome") {
+      sanitized = sanitized
+        .replace(/[^a-zA-ZÀ-ÿ\s]/g, "") // remove números e símbolos
+        .replace(/[\u{1F600}-\u{1F6FF}]/gu, "") // remove emojis
+        .slice(0, 50);
+    }
+
+    if (name === "email") {
+      sanitized = sanitized
+        .replace(/[^\w@.\-+]/g, "") // remove caracteres inválidos
+        .replace(/[\u{1F600}-\u{1F6FF}]/gu, "") // remove emojis
+        .slice(0, 50);
+    }
+
+    setForm((prev) => ({ ...prev, [name]: sanitized }));
   };
 
-  // 🔹 Salva no localStorage e gera PDF com todos os dados
+  // 🔹 Validações
+  const validateForm = () => {
+    const newErrors = {};
+
+    // Nome
+    if (!form.nome.trim()) {
+      newErrors.nome = "O nome não pode estar vazio.";
+    } else if (form.nome.length > 50) {
+      newErrors.nome = "O nome deve ter no máximo 50 caracteres.";
+    } else if (/[^a-zA-ZÀ-ÿ\s]/.test(form.nome)) {
+      newErrors.nome = "O nome não pode conter números ou símbolos.";
+    }
+
+    // Email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!form.email.trim()) {
+      newErrors.email = "O e-mail é obrigatório.";
+    } else if (!emailRegex.test(form.email)) {
+      newErrors.email = "Digite um e-mail válido.";
+    } else if (form.email.length > 50) {
+      newErrors.email = "O e-mail deve ter no máximo 50 caracteres.";
+    }
+
+    // WhatsApp
+    const phoneDigits = form.whatsapp.replace(/\D/g, "");
+    if (phoneDigits.length < 11) {
+      newErrors.whatsapp = "Digite um número de WhatsApp válido.";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // 🔹 Envio final
   const handleGeneratePlan = () => {
+    if (!validateForm()) return;
+
     const updatedData = { ...dados, ...form };
     localStorage.setItem("quizUserData", JSON.stringify(updatedData));
     generateDietPdf(updatedData);
@@ -53,35 +105,74 @@ function CheckoutPage({ onBackToSales }) {
           Insira suas informações para receber seu plano:
         </DescriptiveTitle>
 
-        <Input
-          containerVariant="checkout"
-          inputVariant="checkout"
-          type="text"
-          name="nome"
-          value={form.nome}
-          onChange={handleChange}
-          placeholder="Seu nome"
-        />
+        {/* Nome */}
+        <div className={styles.fieldWrapper}>
+          <Input
+            containerVariant="checkout"
+            inputVariant={errors.nome ? "error" : "checkout"}
+            type="text"
+            name="nome"
+            value={form.nome}
+            onChange={handleChange}
+            placeholder="Seu nome completo"
+          />
+          {errors.nome && <p className={styles.errorText}>{errors.nome}</p>}
+        </div>
 
-        <Input
-          containerVariant="checkout"
-          inputVariant="checkout"
-          type="email"
-          name="email"
-          value={form.email}
-          onChange={handleChange}
-          placeholder="Seu e-mail"
-        />
+        {/* Email */}
+        <div className={styles.fieldWrapper}>
+          <Input
+            containerVariant="checkout"
+            inputVariant={errors.email ? "error" : "checkout"}
+            type="email"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            placeholder="Seu e-mail"
+          />
+          {errors.email && <p className={styles.errorText}>{errors.email}</p>}
+        </div>
 
-        <Input
-          containerVariant="checkout"
-          inputVariant="checkout"
-          type="tel"
-          name="whatsapp"
-          value={form.whatsapp}
-          onChange={handleChange}
-          placeholder="Seu WhatsApp"
-        />
+        {/* WhatsApp */}
+        <div className={styles.fieldWrapper}>
+          <Input
+            containerVariant="checkout"
+            inputVariant={errors.whatsapp ? "error" : "checkout"}
+            type="tel"
+            name="whatsapp"
+            value={form.whatsapp}
+            onChange={(e) => {
+              let value = e.target.value.replace(/\D/g, ""); // só números
+
+              // Permite apagar tudo
+              if (value === "") {
+                setForm({ ...form, whatsapp: "" });
+                return;
+              }
+
+              // Limita a 11 dígitos
+              if (value.length > 11) value = value.slice(0, 11);
+
+              // Aplica máscara apenas quando houver números
+              if (value.length > 6) {
+                value = value.replace(
+                  /^(\d{2})(\d{1})(\d{4})(\d{0,4}).*/,
+                  "($1) $2 $3$4"
+                );
+              } else if (value.length > 2) {
+                value = value.replace(/^(\d{2})(\d{0,5})/, "($1) $2");
+              } else {
+                value = value.replace(/^(\d*)/, "($1");
+              }
+
+              setForm({ ...form, whatsapp: value });
+            }}
+            placeholder="Seu WhatsApp"
+          />
+          {errors.whatsapp && (
+            <p className={styles.errorText}>{errors.whatsapp}</p>
+          )}
+        </div>
       </div>
 
       <div className={styles.buttons}>

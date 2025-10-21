@@ -13,6 +13,7 @@ function Input({
     default: "",
     descriptive: styles.containerDescriptive,
     checkout: styles.containerCheckout,
+    error: styles.containerCheckout,
 
   };
 
@@ -20,6 +21,7 @@ function Input({
   const inputClasses = {
     default: "",
     checkout: styles.inputCheckout,
+    error: styles.inputCheckout,
   };
 
   const containerClass = containerClasses[containerVariant] || "";
