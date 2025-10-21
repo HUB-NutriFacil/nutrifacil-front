@@ -6,7 +6,13 @@ function TitleQuiz({ children, variant }) {
     // 2. Crie a lógica para montar a string de classes CSS
     // A classe .title será aplicada sempre.
     // Se a variant for 'capitalize', a classe .capitalize também será adicionada.
-    const titleClasses = `${styles.title} ${variant === 'capitalize' ? styles.capitalize : ''}`;
+    const titleClasses = `
+  ${styles.title}
+  ${variant === "capitalize" ? styles.capitalize : ""}
+  ${variant === "imc-title" ? styles.imcTitle : ""}
+  ${variant === "soft-title" ? styles.softTitle : ""}
+`;
+
 
     return(
         // 3. Use a nova variável de classes no seu h2

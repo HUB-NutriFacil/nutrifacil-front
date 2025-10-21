@@ -24,3 +24,14 @@
     margin-top: 24.9px;
     margin-bottom: 24.9px;
 }
+
+
+.softTitle{
+    text-transform: capitalize;
+    font-size: 28px;
+}
+
+
+.imcTitle{
+    font-size: 2rem;
+}

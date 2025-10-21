@@ -7,6 +7,10 @@ import TitleQuiz from "../../components/Common/Titles/TitleQuiz";
 import FooterQuiz from "../../components/Footers/FooterQuiz";
 import NavigateButton from "../../components/Common/Buttons/NavigateButton";
 import { calcularIMC } from "../../utils/calcularIMC";
+import SubtitleQuiz from "../../components/Common/Titles/SubtitleQuiz";
+import DescriptiveTitle from "../../components/Common/Titles/DescriptiveTitle";
+import InfosAbout from "../../components/Common/Abouts/InfosAbout";
+import VideoAnimation from "../../components/Ui/Webm/VideoAnimation";
 
 // Função auxiliar: escolhe o GIF conforme o objetivo
 function gifPorObjetivo(objetivo) {
@@ -21,7 +25,7 @@ function gifPorObjetivo(objetivo) {
 }
 
 function SalesPage({ onRestartQuiz }) {
-   const [dados, setDados] = useState({});
+  const [dados, setDados] = useState({});
 
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("quizUserData") || "{}");
@@ -44,8 +48,6 @@ function SalesPage({ onRestartQuiz }) {
       ? dados.objective.nome
       : dados.objective || "Não informado";
 
-  const objetivoGif = gifPorObjetivo(objetivo);
-
   // 🔄 Função para reiniciar quiz
   const handleRestart = () => {
     localStorage.removeItem("quizUserData");
@@ -59,11 +61,23 @@ function SalesPage({ onRestartQuiz }) {
       <HeaderQuiz />
       <TitleQuiz variant="capitalize">Seu plano está pronto!</TitleQuiz>
 
+      <VideoAnimation name={dados.objective?.img} />
 
+      <TitleQuiz variant="soft-title">Para {objetivo}</TitleQuiz>
 
-       <NavigateButton variant="restart" onClick={handleRestart}>
-            Refazer Quiz
-          </NavigateButton>
+      <InfosAbout
+        imc={imc}
+        infos={[
+          { label: "Peso", value: `${peso} kg` },
+          { label: "Altura", value: `${altura} cm` },
+          { label: "Idade", value: `${idade} anos` },
+          { label: "Dieta", value: dieta },
+        ]}
+      />
+
+      <NavigateButton variant="restart" onClick={handleRestart}>
+        Refazer Quiz
+      </NavigateButton>
       <FooterQuiz>Todos os direitos Reservados | NutriFácil™</FooterQuiz>
     </div>
   );

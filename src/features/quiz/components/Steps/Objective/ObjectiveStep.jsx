@@ -19,6 +19,7 @@ function ObjectiveStep({ onNext, onChange}) {
       onChange?.({
       id: item.id,
       nome: item.nome,
+      img: item.img,
     });
     
     // Isso fará o QuizPage avançar para o próximo passo automaticamente.
