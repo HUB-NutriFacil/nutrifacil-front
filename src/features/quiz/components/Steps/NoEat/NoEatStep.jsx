@@ -1,12 +1,11 @@
 import TitleQuiz from "../../../../../components/Common/Titles/TitleQuiz.jsx";
 import BulletButtonContainer from "../../OptionsContainer/BulletButtonContainer.jsx";
-import styles from "../SelectStep.module.css"
-import {noEatCategories} from "../../../data/noEatOptions.js"
+import styles from "../SelectStep.module.css";
+import { noEatCategories } from "../../../data/noEatOptions.js";
 import { useState } from "react";
 
-
-function NoEatStep({onChange}) {
-    // 🧠 Estado para guardar as opções selecionadas
+function NoEatStep({ onChange }) {
+  // 🧠 Estado para guardar as opções selecionadas
   const [selectedNoEat, setSelectedNoEat] = useState([]);
 
   // Função para alternar seleção
@@ -27,11 +26,13 @@ function NoEatStep({onChange}) {
     });
   };
   return (
-  <div className={styles.container}>
-      <TitleQuiz variant="capitalize"> O que você não gostaria de comer? </TitleQuiz>
-      
+    <div className={styles.container}>
+      <TitleQuiz variant="capitalize">
+        {" "}
+        O que você não gostaria de comer?{" "}
+      </TitleQuiz>
 
- <BulletButtonContainer
+      <BulletButtonContainer
         titulo="Proteínas"
         opcoes={noEatCategories.proteinas}
         onToggle={handleToggleOption}
@@ -72,7 +73,6 @@ function NoEatStep({onChange}) {
         onToggle={handleToggleOption}
         selecionados={selectedNoEat}
       />
-
     </div>
   );
 }
