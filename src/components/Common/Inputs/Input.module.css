@@ -54,15 +54,15 @@
 
 
 .inputCheckout {
-  width: 250px;
+  width: 350px;
   height: 45px;
   /* background-color: blueviolet; */
 
   border: 1px solid rgba(0, 0, 0, 0.404);
-
+  font-size: 1.2rem;
 }
 
-.inputCheckout::placeholder{
+.inputCheckout::placeholder {
   font-size: 1.2rem;
-  
+
 }

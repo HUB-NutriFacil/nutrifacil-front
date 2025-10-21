@@ -1,3 +1,4 @@
+// src/features/quiz/pages/CheckoutPage.jsx
 import { useEffect, useState } from "react";
 import styles from "./CheckoutPage.module.css";
 import HeaderQuiz from "../../components/Headers/HeaderQuiz";
@@ -5,53 +6,80 @@ import FooterQuiz from "../../components/Footers/FooterQuiz";
 import TitleQuiz from "../../components/Common/Titles/TitleQuiz";
 import NavigateButton from "../../components/Common/Buttons/NavigateButton";
 import Input from "../../components/Common/Inputs/Input";
-import PlanButton from "../../components/Common/Buttons/PlanButton";
 import DescriptiveTitle from "../../components/Common/Titles/DescriptiveTitle";
+import { generateDietPdf } from "../../utils/pdfGenerator";
 
 function CheckoutPage({ onBackToSales }) {
   const [dados, setDados] = useState({});
+  const [form, setForm] = useState({
+    nome: "",
+    email: "",
+    whatsapp: "",
+  });
 
+  // 🔹 Pega dados anteriores do quiz ao montar
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("quizUserData") || "{}");
     setDados(saved);
+
+    // Se o usuário já preencheu o checkout antes, recupera
+    setForm({
+      nome: saved.nome || "",
+      email: saved.email || "",
+      whatsapp: saved.whatsapp || "",
+    });
   }, []);
 
-  const preco = 39.99;
-  const dieta =
-    typeof dados.diet === "object"
-      ? dados.diet
-      : { nome: dados.diet || "Não informado" };
+  // 🔹 Atualiza o estado conforme o usuário digita
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // 🔹 Salva no localStorage e gera PDF com todos os dados
+  const handleGeneratePlan = () => {
+    const updatedData = { ...dados, ...form };
+    localStorage.setItem("quizUserData", JSON.stringify(updatedData));
+    generateDietPdf(updatedData);
+  };
 
   return (
     <div className={styles.container}>
       <HeaderQuiz />
       <TitleQuiz variant="capitalize">Finalizar Compra</TitleQuiz>
 
-      {/* 🔹 Mostra o plano selecionado (não clicável) */}
-      {/* <div className={styles.planPreview}>
-        <PlanButton item={dieta} preco={preco} isSelected={true} />
-      </div> */}
-
       <div className={styles.formSection}>
         <DescriptiveTitle variant="checkout">
           Insira suas informações para receber seu plano:
         </DescriptiveTitle>
+
         <Input
-          variant="checkout"
+          containerVariant="checkout"
           inputVariant="checkout"
           type="text"
+          name="nome"
+          value={form.nome}
+          onChange={handleChange}
           placeholder="Seu nome"
         />
+
         <Input
           containerVariant="checkout"
           inputVariant="checkout"
           type="email"
+          name="email"
+          value={form.email}
+          onChange={handleChange}
           placeholder="Seu e-mail"
         />
+
         <Input
-          variant="checkout"
+          containerVariant="checkout"
           inputVariant="checkout"
           type="tel"
+          name="whatsapp"
+          value={form.whatsapp}
+          onChange={handleChange}
           placeholder="Seu WhatsApp"
         />
       </div>
@@ -60,7 +88,9 @@ function CheckoutPage({ onBackToSales }) {
         <NavigateButton variant="checkout" onClick={onBackToSales}>
           Voltar
         </NavigateButton>
-        <NavigateButton variant="checkout">Gerar meu plano</NavigateButton>
+        <NavigateButton variant="checkout" onClick={handleGeneratePlan}>
+          Gerar meu plano
+        </NavigateButton>
       </div>
 
       <FooterQuiz>Todos os direitos Reservados | NutriFácil™</FooterQuiz>
@@ -69,10 +99,3 @@ function CheckoutPage({ onBackToSales }) {
 }
 
 export default CheckoutPage;
-
-// 20/10/2025
-// Correção da exibição do plano no checkout e adição do formulário.
-// --------------------------------------------
-// Mostra o plano personalizado escolhido, agora como preview fixo (não clicável),
-// e coleta nome, e-mail e WhatsApp para envio do plano.
-// by: gabbu (github: gabriellesote)
