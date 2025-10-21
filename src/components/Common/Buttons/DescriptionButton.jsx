@@ -5,6 +5,7 @@ import SubtitleQuiz from "../Titles/SubtitleQuiz";
 
 // 1. Receba as props: item (com nome e descricao) e isSelected
 function DescriptionButton({ item, isSelected }) {
+    if (!item) return null;
   // 2. Extraia os valores do objeto 'item'
   const { nome, descricao, img } = item;
 

@@ -7,22 +7,12 @@ import TitleQuiz from "../../components/Common/Titles/TitleQuiz";
 import FooterQuiz from "../../components/Footers/FooterQuiz";
 import NavigateButton from "../../components/Common/Buttons/NavigateButton";
 import { calcularIMC } from "../../utils/calcularIMC";
-import SubtitleQuiz from "../../components/Common/Titles/SubtitleQuiz";
-import DescriptiveTitle from "../../components/Common/Titles/DescriptiveTitle";
+
 import InfosAbout from "../../components/Common/Abouts/InfosAbout";
 import VideoAnimation from "../../components/Ui/Webm/VideoAnimation";
 
 // Função auxiliar: escolhe o GIF conforme o objetivo
-function gifPorObjetivo(objetivo) {
-  switch ((objetivo || "").toLowerCase()) {
-    case "emagrecimento":
-      return "/imagens/Animation - 1749211936355.gif";
-    case "hipertrofia":
-      return "/imagens/Animation - 1749212342747.gif";
-    default:
-      return "";
-  }
-}
+
 
 function SalesPage({ onRestartQuiz }) {
   const [dados, setDados] = useState({});
@@ -67,6 +57,7 @@ function SalesPage({ onRestartQuiz }) {
 
       <InfosAbout
         imc={imc}
+        diet={dados.diet} 
         infos={[
           { label: "Peso", value: `${peso} kg` },
           { label: "Altura", value: `${altura} cm` },

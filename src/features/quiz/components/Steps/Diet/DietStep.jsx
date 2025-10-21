@@ -18,6 +18,7 @@ function DietStep({ onNext, onChange }) {
     const selectedData = {
       id: item.id,
       nome: item.nome,
+      img: item.img
     };
     // Salva no estado global e no localStorage
     onChange(selectedData);
