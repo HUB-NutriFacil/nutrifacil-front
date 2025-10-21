@@ -6,11 +6,19 @@ function NavigateButton({
   onClick,
   className = "",
   disabled = false,
-  variant = "default", // 👈 novo prop
+  variant = "default",
 }) {
-  // Define o estilo de acordo com o variant
-  const variantClass =
-    variant === "restart" ? styles.restart : styles.default;
+  // ✅ Crie um mapa de variants
+  const variantMap = {
+    default: styles.default,
+    restart: styles.restart,
+    checkout: styles.checkout,
+    confirm: styles.confirm,
+    outline: styles.outline,
+  };
+
+  // ✅ Busca o estilo correspondente ou usa default
+  const variantClass = variantMap[variant] || styles.default;
 
   return (
     <button
@@ -19,6 +27,7 @@ function NavigateButton({
       className={`${styles.container} ${variantClass} ${className} ${
         disabled ? styles.disabled : ""
       }`}
+      disabled={disabled}
     >
       {children}
     </button>
@@ -28,8 +37,7 @@ function NavigateButton({
 export default NavigateButton;
 
 // 20/10/2025
-// Adicionado prop variant ("restart") no NavigateButton
+// Corrigida lógica de variants no botão e adicionado suporte para múltiplos estilos.
 // --------------------------------------------
-// Permite estilizar o botão de "Refazer Quiz" com cor diferenciada
-// sem alterar o visual padrão dos botões de navegação.
+// Usa um mapa de variants para permitir novos tipos sem ifs aninhados.
 // by: gabbu (github: gabriellesote)

@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+
+    /* background-color: aqua; */
+}
+
+
+.formSection {
+    /* background-color: blueviolet; */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 20px;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+
+/*      
+    background-color: blue; */
+}
+
+ 

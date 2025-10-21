@@ -18,3 +18,19 @@
     border-radius: 3.125rem ;
 
 }
+
+.planContainer{
+     display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 5px;
+}
+.plan{
+    padding: 10px;
+    height: 19px;
+    width: fit-content;
+    border-radius: 5px;
+    font-size: .89em;
+
+    
+}

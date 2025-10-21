@@ -13,8 +13,7 @@ import VideoAnimation from "../../components/Ui/Webm/VideoAnimation";
 
 // Função auxiliar: escolhe o GIF conforme o objetivo
 
-
-function SalesPage({ onRestartQuiz }) {
+function SalesPage({ onRestartQuiz, onGoToCheckout }) {
   const [dados, setDados] = useState({});
 
   useEffect(() => {
@@ -27,7 +26,7 @@ function SalesPage({ onRestartQuiz }) {
   const altura = dados.height || "Não informado";
   const idade = dados.age || "Não informado";
   const imc = calcularIMC(dados.weight, dados.height);
-
+  const preco = 39.99;
   const dieta =
     typeof dados.diet === "object"
       ? dados.diet.nome
@@ -57,7 +56,9 @@ function SalesPage({ onRestartQuiz }) {
 
       <InfosAbout
         imc={imc}
-        diet={dados.diet} 
+        diet={dados.diet}
+        preco={preco}
+        onGoToCheckout={onGoToCheckout}
         infos={[
           { label: "Peso", value: `${peso} kg` },
           { label: "Altura", value: `${altura} cm` },

@@ -35,3 +35,8 @@
   cursor: not-allowed;
   pointer-events: none;
 }
+
+
+.checkout{
+   margin-top: 10px;
+}
