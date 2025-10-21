@@ -19,3 +19,10 @@
 .preco span{
   font-weight: 700;
 }
+
+
+.checkout{
+    /* background-color: blueviolet; */
+    width: 340px;
+    text-align: center;
+}

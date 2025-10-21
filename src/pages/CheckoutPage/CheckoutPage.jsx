@@ -6,6 +6,7 @@ import TitleQuiz from "../../components/Common/Titles/TitleQuiz";
 import NavigateButton from "../../components/Common/Buttons/NavigateButton";
 import Input from "../../components/Common/Inputs/Input";
 import PlanButton from "../../components/Common/Buttons/PlanButton";
+import DescriptiveTitle from "../../components/Common/Titles/DescriptiveTitle";
 
 function CheckoutPage({ onBackToSales }) {
   const [dados, setDados] = useState({});
@@ -32,10 +33,27 @@ function CheckoutPage({ onBackToSales }) {
       </div> */}
 
       <div className={styles.formSection}>
-        <p>Insira suas informações para receber seu plano:</p>
-        <Input type="text" placeholder="Seu nome" />
-        <Input type="email" placeholder="Seu e-mail" />
-        <Input type="tel" placeholder="Seu WhatsApp" />
+        <DescriptiveTitle variant="checkout">
+          Insira suas informações para receber seu plano:
+        </DescriptiveTitle>
+        <Input
+          variant="checkout"
+          inputVariant="checkout"
+          type="text"
+          placeholder="Seu nome"
+        />
+        <Input
+          containerVariant="checkout"
+          inputVariant="checkout"
+          type="email"
+          placeholder="Seu e-mail"
+        />
+        <Input
+          variant="checkout"
+          inputVariant="checkout"
+          type="tel"
+          placeholder="Seu WhatsApp"
+        />
       </div>
 
       <div className={styles.buttons}>

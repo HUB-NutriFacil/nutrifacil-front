@@ -7,6 +7,7 @@ function DescriptiveTitle({ children, className,variant }) {
   const combinedClassName = `${styles.descriptive} ${className || ''}  
   ${variant === 'titles' ? styles.titles : ''}
   ${variant === 'preco' ? styles.preco: ''}
+  ${variant === 'checkout' ? styles.checkout: ''}
   `;
 
   return <h3 className={combinedClassName}> {children} </h3>;

@@ -1,15 +1,38 @@
+// src/features/quiz/components/Common/Inputs/Input.jsx
 import styles from "./Input.module.css";
 
-// Depois (Adicione '...rest' e renomeie as props para 'placeholder' e 'type'):
-function Input({ variant, placeholder, type = "text", ...rest }) {
-  const inputClasses = `${styles.inputContainer} ${
-    variant === "descriptive" ? styles.var : ""
-  }`;
+function Input({
+  containerVariant = "default",
+  inputVariant = "default",
+  placeholder,
+  type = "text",
+  ...rest
+}) {
+  // 🧩 Variantes para o container
+  const containerClasses = {
+    default: "",
+    descriptive: styles.containerDescriptive,
+    checkout: styles.containerCheckout,
+
+  };
+
+  // 🧩 Variantes para o input
+  const inputClasses = {
+    default: "",
+    checkout: styles.inputCheckout,
+  };
+
+  const containerClass = containerClasses[containerVariant] || "";
+  const inputClass = inputClasses[inputVariant] || "";
 
   return (
-    <div className={inputClasses}>
-      {/* O "rest" passa todas as outras props (value, onChange, name, etc.) */}
-      <input type={type} placeholder={placeholder} className={styles.input} {...rest} />
+    <div className={`${styles.inputContainer} ${containerClass}`}>
+      <input
+        type={type}
+        placeholder={placeholder}
+        className={`${styles.input} ${inputClass}`}
+        {...rest}
+      />
     </div>
   );
 }
