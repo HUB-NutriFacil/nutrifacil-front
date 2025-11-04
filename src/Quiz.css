@@ -577,3 +577,18 @@
   color: #2e2e2e;
   margin-top: 10px;
 }
+
+.btn-voltar {
+  position: absolute;
+  top: 40px; /* Distância do topo */
+  left: 20px; /* Distância da esquerda */
+  background: none;
+  border: none;
+  color: #ccc; /* Cor cinza claro */
+  font-size: 24px; /* Tamanho do ícone */
+  cursor: pointer;
+}
+
+.btn-voltar:hover {
+  color: #999; /* Cor ao passar o mouse */
+}

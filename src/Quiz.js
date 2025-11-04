@@ -906,5 +906,19 @@ export default function QuizPage({ onFinish }) {
     }
   };
 
-  return <div className="quiz-container">{renderStepContent()}</div>;
+  return (
+  <div className="quiz-container">
+    {/* Botão de voltar */}
+    {step > 0 && (
+      <button
+        className="btn-voltar"
+        onClick={prevStep}
+      >
+        <FaArrowLeft />
+      </button>
+    )}
+
+    {renderStepContent()}
+  </div>
+);
 }
