@@ -1,0 +1,19 @@
+.subtitle {
+    font-size: 1.12rem;
+    text-align: center;
+    margin: 8px 0px;
+    
+}
+
+.descriptive {
+    text-align: left;
+    text-transform: capitalize;
+    font-size: 1.25rem;
+    margin: 0px;
+}
+.imcDescriptive {
+    color: var(--cor-texto-rodape);
+    font-size: 1.9rem;
+    font-weight: 300;
+}
+

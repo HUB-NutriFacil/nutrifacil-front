@@ -1,0 +1,62 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border: 2px solid transparent;
+  border-radius: 6px;
+  padding: 8px 10px;
+  background-color: #fff;
+  width: 100%;
+  max-width: 600px;
+
+  /* background-color: blue; */
+   
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  background-color: var(--cor-primaria);
+  color: black;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.removeBtn {
+  background: none;
+  border: none;
+  color: black;
+  font-size: 16px;
+  margin-left: 6px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.removeBtn:hover {
+  color: #ffeded;
+}
+
+
+.container input::placeholder {
+  font-size: 1rem; /* 👈 ajuste o tamanho aqui */
+  color: var(--cor-placeholder);
+  opacity: 0.8;
+  text-align: center;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

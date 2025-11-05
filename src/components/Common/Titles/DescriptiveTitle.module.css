@@ -1,0 +1,28 @@
+.descriptive{
+    font-size: 1.3rem;
+    text-transform: capitalize;
+}
+
+
+
+.titles{
+    font-size: 1.1rem;
+} 
+
+.preco{
+    margin-top: 2px;
+    font-size: 1rem;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.preco span{
+  font-weight: 700;
+}
+
+
+.checkout{
+    /* background-color: blueviolet; */
+    width: 340px;
+    text-align: center;
+}

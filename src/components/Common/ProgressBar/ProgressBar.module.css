@@ -1,0 +1,43 @@
+/* src/components/commons/ProgressBar.module.css */
+
+.progressBarContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 14px;
+}
+
+/* Segmento padrão (vazio) */
+.segment {
+    background-color: transparent;
+    border-radius: 3px;
+    border: 2px solid var(--cor-primaria);
+    width: 54px;
+    transition: background-color 0.3s ease-in-out, background-position 0.6s ease-in-out;
+}
+
+/* Segmento totalmente preenchido */
+.activeSegment {
+    width: 54px;
+    background-color: var(--cor-primaria);
+    border-radius: 3px;
+    border: 2px solid var(--cor-primaria);
+    transition: background-color 0.3s ease-in-out, background-position 0.6s ease-in-out;
+}
+
+/* ✅ Segmento meio preenchido (início do quiz) */
+.halfSegment {
+    width: 54px;
+    border-radius: 3px;
+    border: 2px solid var(--cor-primaria);
+    background: linear-gradient(
+        to right,
+        var(--cor-primaria) 26%,
+        transparent 0%
+    );
+    background-size: 200% 100%;
+    background-position: left;
+    transition: background-position 0.6s ease-in-out, background-color 0.3s ease-in-out;
+}

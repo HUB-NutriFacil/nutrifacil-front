@@ -1,0 +1,22 @@
+/* # logo */
+
+.logo {
+    width: 200px;
+}
+
+
+
+.arrow{
+    max-height: 24px;
+    font-size: 1.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Disclaimer */
+
+/* .disclaimer{
+    
+} */

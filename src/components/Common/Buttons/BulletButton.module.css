@@ -1,0 +1,57 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+
+ 
+  max-width: 220px;
+  min-width: 180px;
+
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1.5px solid var(--cor-borda-cinza);
+  background: transparent;
+  color: var(--cor-texto-input);
+
+  cursor: pointer;
+  
+}
+
+ 
+.selected {
+  border-color: var(--cor-primaria);
+ 
+}
+
+/* Círculo externo */
+.circle {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1.97px solid #000;
+  position: relative;
+  flex-shrink: 0;
+  background: transparent;
+
+}
+
+/* Bolinha interna quando selecionado */
+.innerCircle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cor-primaria);
+}
+
+/* Texto */
+.label {
+  margin-top: 1px;
+  font-size: .9rem;
+  text-align: left;
+}

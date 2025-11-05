@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  position: relative; /* importante pra animação do “kg” */
+}
+
+/* kg */
+.unidade {
+  position: absolute;
+  top: 7px;
+  right: 120px;
+  margin-top: 8px;
+  font-size: 1rem;
+  color: var(--cor-placeholder);
+  opacity: 0;
+  transform: translateY(5px); /* começa levemente abaixo */
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    color 0.3s ease;
+}
+
+/* Quando o input está focado */
+.container:focus-within .unidade {
+  color: var(--cor-secundaria);
+}
+
+/* Quando o input tem texto */
+.container:has(input:not(:placeholder-shown)) .unidade {
+  opacity: 1;
+  transform: translateY(0); /* sobe suavemente */
+  color: var(--cor-secundaria);
+}
