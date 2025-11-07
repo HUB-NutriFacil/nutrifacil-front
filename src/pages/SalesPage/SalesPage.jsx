@@ -10,7 +10,7 @@ import { calcularIMC } from "../../utils/calcularIMC";
 
 import InfosAbout from "../../components/Common/Abouts/InfosAbout";
 import VideoAnimation from "../../components/Ui/Webm/VideoAnimation";
-
+import AboutText from "../../components/Common/Texts/AboutText";
 // Função auxiliar: escolhe o GIF conforme o objetivo
 
 function SalesPage({ onRestartQuiz, onGoToCheckout }) {
@@ -67,9 +67,9 @@ function SalesPage({ onRestartQuiz, onGoToCheckout }) {
         ]}
       />
 
-      <NavigateButton variant="restart" onClick={handleRestart}>
-        Refazer Quiz
-      </NavigateButton>
+      <AboutText variant="quizRestart" onClick={handleRestart}>
+        Refazer o quiz do começo
+      </AboutText>
       <FooterQuiz>Todos os direitos Reservados | NutriFácil™</FooterQuiz>
     </div>
   );

@@ -4,6 +4,7 @@ function AboutText({children, variant}){
     const aboutClasses = `${styles.miniAbout} 
     ${variant === 'descriptive' ? styles.descriptive : ''}
     ${variant === 'dietName' ? styles.dietName : ''}
+    ${variant === 'quizRestart' ? styles.quizRestart : ''}
     `;
     return(
         <h4 className={aboutClasses}> {children}</h4>
