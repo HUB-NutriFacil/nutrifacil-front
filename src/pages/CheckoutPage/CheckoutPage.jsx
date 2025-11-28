@@ -1,7 +1,8 @@
 // src/features/quiz/pages/CheckoutPage.jsx
 import { useEffect, useState } from "react";
-import { startCheckout } from "../../services/checkout";
 import { useNavigate } from "react-router-dom";
+import { api } from "../../services/api";
+import { startCheckout } from "../../services/checkout";
 
 import styles from "./CheckoutPage.module.css";
 import HeaderQuiz from "../../components/Headers/HeaderQuiz";
@@ -11,32 +12,23 @@ import NavigateButton from "../../components/Common/Buttons/NavigateButton";
 import Input from "../../components/Common/Inputs/Input";
 import DescriptiveTitle from "../../components/Common/Titles/DescriptiveTitle";
 
-function CheckoutPage({ onBackToSales }) {
+function CheckoutPage() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  const [dados, setDados] = useState({});
-  const [form, setForm] = useState({
-    nome: "",
-    email: "",
-    whatsapp: "",
-  });
-
+  const [form, setForm] = useState({ nome: "", email: "" });
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("quizUserData") || "{}");
-    setDados(saved);
     setForm({
       nome: saved.nome || "",
       email: saved.email || "",
-      whatsapp: saved.whatsapp || "",
     });
   }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     let sanitized = value;
 
     if (name === "nome") {
@@ -52,58 +44,86 @@ function CheckoutPage({ onBackToSales }) {
 
   const validateForm = () => {
     const newErrors = {};
-
     if (!form.nome.trim()) newErrors.nome = "Informe seu nome";
     if (!form.email.trim()) newErrors.email = "Informe seu e-mail";
-
-    const phoneDigits = form.whatsapp.replace(/\D/g, "");
-    if (phoneDigits.length < 11) newErrors.whatsapp = "WhatsApp inválido";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  // 🚀 Novo handle que chama o backend
-const handleGeneratePlan = async () => {
-  if (!validateForm()) return;
+  // 🚀 Inicia o fluxo real
+  const handleGeneratePlan = async () => {
+    if (!validateForm()) return;
+    setLoading(true);
 
-  const updatedData = { ...dados, ...form };
-  localStorage.setItem("quizUserData", JSON.stringify(updatedData));
+    const quizData = JSON.parse(localStorage.getItem("quizUserData") || "{}");
 
-  setLoading(true);
+    try {
+      // 1️⃣ Salva quiz no backend
+      await api.post("/quiz/save", {
+        userId: 1, // placeholder até autenticarmos
+        quizData,
+      });
 
-  // 1️⃣ Salva quiz antes
-  await api.post("/checkout/save-quiz", {
-    userId: 1, // substituir pelo user real se houver auth
-    quizData: updatedData
-  });
+      // 2️⃣ Cria o checkout Pagar.me
+      const { data } = await startCheckout({
+        planName: "Plano NutriFácil",
+        amount: 39.99,
+        email: form.email,
+      });
 
-  // 2️⃣ Cria pagamento
-  const result = await startCheckout({
-    planName: "Plano NutriFácil",
-    amount: 39.99,
-    email: updatedData.email,
-  });
-
-  window.location.href = result.paymentLink;
-};
-
+      window.location.href = data.paymentLink;
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao iniciar o pagamento");
+      setLoading(false);
+    }
+  };
 
   return (
     <div className={styles.container}>
       <HeaderQuiz />
 
       {loading ? (
-        <p className={styles.loading}>Redirecionando para pagamento...</p>
+        <p className={styles.loading}>Redirecionando para o pagamento...</p>
       ) : (
         <>
           <TitleQuiz variant="capitalize">Finalizar Compra</TitleQuiz>
-          ...
+
+          <div className={styles.formSection}>
+            <DescriptiveTitle>
+              Insira seu nome e e-mail para receber sua dieta:
+            </DescriptiveTitle>
+
+            <div className={styles.fieldWrapper}>
+              <Input
+                type="text"
+                name="nome"
+                placeholder="Seu nome"
+                value={form.nome}
+                onChange={handleChange}
+              />
+              {errors.nome && <p className={styles.errorText}>{errors.nome}</p>}
+            </div>
+
+            <div className={styles.fieldWrapper}>
+              <Input
+                type="email"
+                name="email"
+                placeholder="Seu e-mail"
+                value={form.email}
+                onChange={handleChange}
+              />
+              {errors.email && <p className={styles.errorText}>{errors.email}</p>}
+            </div>
+          </div>
+
           <div className={styles.buttons}>
-            <NavigateButton variant="checkout" onClick={onBackToSales}>
+            <NavigateButton onClick={() => navigate("/sales")}>
               Voltar
             </NavigateButton>
-            <NavigateButton variant="checkout" onClick={handleGeneratePlan}>
+
+            <NavigateButton onClick={handleGeneratePlan}>
               Continuar para pagamento 💳
             </NavigateButton>
           </div>
