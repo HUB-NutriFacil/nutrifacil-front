@@ -9,73 +9,62 @@ import HeaderQuiz from "../../components/Headers/HeaderQuiz";
 import FooterQuiz from "../../components/Footers/FooterQuiz";
 import TitleQuiz from "../../components/Common/Titles/TitleQuiz";
 import NavigateButton from "../../components/Common/Buttons/NavigateButton";
-import Input from "../../components/Common/Inputs/Input";
 import DescriptiveTitle from "../../components/Common/Titles/DescriptiveTitle";
+
+import PaymentPopup from "../../components/Iframe/PaymentPopup";
 
 function CheckoutPage() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [paymentLink, setPaymentLink] = useState(null);
+  const [transactionId, setTransactionId] = useState(null);
 
-  const [form, setForm] = useState({ nome: "", email: "" });
-  const [errors, setErrors] = useState({});
+  // 🔄 POLLING PARA ACOMPANHAR STATUS DA DIETA
+  const startPolling = (id) => {
+    const interval = setInterval(async () => {
+      try {
+        const { data } = await api.get(`/checkout/status/${id}`);
 
-  useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("quizUserData") || "{}");
-    setForm({
-      nome: saved.nome || "",
-      email: saved.email || "",
-    });
-  }, []);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    let sanitized = value;
-
-    if (name === "nome") {
-      sanitized = sanitized.replace(/[^a-zA-ZÀ-ÿ\s]/g, "").slice(0, 50);
-    }
-
-    if (name === "email") {
-      sanitized = sanitized.replace(/[^\w@.\-+]/g, "").slice(0, 50);
-    }
-
-    setForm((prev) => ({ ...prev, [name]: sanitized }));
+        if (data.status === "done") {
+          clearInterval(interval);
+          setPaymentLink(null); // fecha popup
+          navigate("/plan-ready"); // navega para página final
+        }
+      } catch (err) {
+        console.error("Erro no polling:", err);
+      }
+    }, 2000);
   };
 
-  const validateForm = () => {
-    const newErrors = {};
-    if (!form.nome.trim()) newErrors.nome = "Informe seu nome";
-    if (!form.email.trim()) newErrors.email = "Informe seu e-mail";
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  // 🚀 Inicia o fluxo real
-  const handleGeneratePlan = async () => {
-    if (!validateForm()) return;
+  // 🚀 INICIA O FLUXO DE PAGAMENTO
+  const handlePayment = async () => {
     setLoading(true);
 
-    const quizData = JSON.parse(localStorage.getItem("quizUserData") || "{}");
-
     try {
-      // 1️⃣ Salva quiz no backend
-      await api.post("/checkout/save-quiz", {
-        userId: 1, // placeholder até autenticarmos
-        quizData,
-      });
+      const payload = {
+        planName: "Plano Padrão Nutrifacil 30 dias",
+        amount: 1, // mesmo preço usado no SalesPage
+      };
 
-      // 2️⃣ Cria o checkout Pagar.me
-      const { data } = await startCheckout({
-        planName: "Plano NutriFácil",
-        amount: 39.99,
-        email: form.email,
-      });
+      const res = await api.post("/checkout/start", payload);
 
-      window.location.href = data.paymentLink;
-    } catch (error) {
-      console.error(error);
-      alert("Erro ao iniciar o pagamento");
+      if (!res?.paymentLink) {
+        alert("Erro inesperado ao gerar o link de pagamento.");
+        return;
+      }
+
+      // Abre popup com o paymentLink
+      setPaymentLink(res.paymentLink);
+
+      // Guarda transactionId para polling
+      setTransactionId(res.transactionId);
+
+      // Inicia monitoramento
+      startPolling(res.transactionId);
+    } catch (e) {
+      console.error("Erro ao iniciar checkout:", e);
+      alert("Erro ao iniciar pagamento.");
+    } finally {
       setLoading(false);
     }
   };
@@ -84,51 +73,29 @@ function CheckoutPage() {
     <div className={styles.container}>
       <HeaderQuiz />
 
-      {loading ? (
-        <p className={styles.loading}>Redirecionando para o pagamento...</p>
-      ) : (
-        <>
-          <TitleQuiz variant="capitalize">Finalizar Compra</TitleQuiz>
-
-          <div className={styles.formSection}>
-            <DescriptiveTitle>
-              Insira seu nome e e-mail para receber sua dieta:
-            </DescriptiveTitle>
-
-            <div className={styles.fieldWrapper}>
-              <Input
-                type="text"
-                name="nome"
-                placeholder="Seu nome"
-                value={form.nome}
-                onChange={handleChange}
-              />
-              {errors.nome && <p className={styles.errorText}>{errors.nome}</p>}
-            </div>
-
-            <div className={styles.fieldWrapper}>
-              <Input
-                type="email"
-                name="email"
-                placeholder="Seu e-mail"
-                value={form.email}
-                onChange={handleChange}
-              />
-              {errors.email && <p className={styles.errorText}>{errors.email}</p>}
-            </div>
-          </div>
-
-          <div className={styles.buttons}>
-            <NavigateButton onClick={() => navigate("/sales")}>
-              Voltar
-            </NavigateButton>
-
-            <NavigateButton onClick={handleGeneratePlan}>
-              Continuar para pagamento 💳
-            </NavigateButton>
-          </div>
-        </>
+      {/* POPUP DO PAGAMENTO */}
+      {paymentLink && (
+        <PaymentPopup
+          link={paymentLink}
+          onClose={() => setPaymentLink(null)}
+        />
       )}
+
+      <TitleQuiz variant="capitalize">Finalizar Compra</TitleQuiz>
+
+      <DescriptiveTitle>
+        Clique abaixo para realizar o pagamento:
+      </DescriptiveTitle>
+
+      <div className={styles.buttons}>
+        <NavigateButton onClick={() => navigate("/sales")}>
+          Voltar
+        </NavigateButton>
+
+        <NavigateButton onClick={handlePayment}>
+          Continuar para pagamento 💳
+        </NavigateButton>
+      </div>
 
       <FooterQuiz>Todos os direitos Reservados | NutriFácil™</FooterQuiz>
     </div>
