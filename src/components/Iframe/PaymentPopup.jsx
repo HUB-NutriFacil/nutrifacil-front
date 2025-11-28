@@ -7,11 +7,9 @@ export default function PaymentPopup({ link, onClose }) {
 
   return (
     <div className={styles.overlay}>
-      <div className={styles.modal}>
-        <button className={styles.closeBtn} onClick={onClose}>
-          ✖
-        </button>
+          <button className={styles.closeBtn} onClick={onClose}>✖</button>
 
+      <div className={styles.modal}>
         <iframe
           src={link}
           title="Pagamento"

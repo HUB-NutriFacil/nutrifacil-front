@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../services/api";
-import { startCheckout } from "../../services/checkout";
 
 import styles from "./CheckoutPage.module.css";
 import HeaderQuiz from "../../components/Headers/HeaderQuiz";
@@ -10,57 +9,51 @@ import FooterQuiz from "../../components/Footers/FooterQuiz";
 import TitleQuiz from "../../components/Common/Titles/TitleQuiz";
 import NavigateButton from "../../components/Common/Buttons/NavigateButton";
 import DescriptiveTitle from "../../components/Common/Titles/DescriptiveTitle";
-
+import InfosAbout from "../../components/Common/Abouts/InfosAbout";
+import { calcularIMC } from "../../utils/calcularIMC";
 import PaymentPopup from "../../components/Iframe/PaymentPopup";
 
 function CheckoutPage() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [paymentLink, setPaymentLink] = useState(null);
-  const [transactionId, setTransactionId] = useState(null);
+  const [dados, setDados] = useState({});
+  const preco = 1;
 
-  // 🔄 POLLING PARA ACOMPANHAR STATUS DA DIETA
-  const startPolling = (id) => {
-    const interval = setInterval(async () => {
-      try {
-        const { data } = await api.get(`/checkout/status/${id}`);
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem("quizUserData") || "{}");
+    setDados(saved);
+  }, []);
 
-        if (data.status === "done") {
-          clearInterval(interval);
-          setPaymentLink(null); // fecha popup
-          navigate("/plan-ready"); // navega para página final
-        }
-      } catch (err) {
-        console.error("Erro no polling:", err);
-      }
-    }, 2000);
-  };
+  const imc = calcularIMC(dados.weight, dados.height);
 
-  // 🚀 INICIA O FLUXO DE PAGAMENTO
+  const dieta =
+    typeof dados.diet === "object" ? dados.diet.nome : dados.diet;
+
+  // 🚀 INICIA O PAGAMENTO
   const handlePayment = async () => {
     setLoading(true);
 
     try {
       const payload = {
         planName: "Plano Padrão Nutrifacil 30 dias",
-        amount: 1, // mesmo preço usado no SalesPage
+        amount: 1,
       };
 
       const res = await api.post("/checkout/start", payload);
 
       if (!res?.paymentLink) {
-        alert("Erro inesperado ao gerar o link de pagamento.");
+        alert("Erro ao gerar link de pagamento.");
         return;
       }
 
-      // Abre popup com o paymentLink
+      // Abre o iframe do pagamento
       setPaymentLink(res.paymentLink);
 
-      // Guarda transactionId para polling
-      setTransactionId(res.transactionId);
+      // ❌ NÃO REDIRECIONA AQUI  
+      // O redirecionamento acontecerá automaticamente após o pagamento,
+      // via success_url configurada no backend (para /loading?tid=pl_xxx).
 
-      // Inicia monitoramento
-      startPolling(res.transactionId);
     } catch (e) {
       console.error("Erro ao iniciar checkout:", e);
       alert("Erro ao iniciar pagamento.");
@@ -73,15 +66,23 @@ function CheckoutPage() {
     <div className={styles.container}>
       <HeaderQuiz />
 
-      {/* POPUP DO PAGAMENTO */}
       {paymentLink && (
-        <PaymentPopup
-          link={paymentLink}
-          onClose={() => setPaymentLink(null)}
-        />
+        <PaymentPopup link={paymentLink} onClose={() => setPaymentLink(null)} />
       )}
 
       <TitleQuiz variant="capitalize">Finalizar Compra</TitleQuiz>
+
+      <InfosAbout
+        imc={imc}
+        diet={dados.diet}
+        preco={preco}
+        infos={[
+          { label: "Peso", value: `${dados.weight} kg` },
+          { label: "Altura", value: `${dados.height} cm` },
+          { label: "Idade", value: `${dados.age} anos` },
+          { label: "Dieta", value: dieta },
+        ]}
+      />
 
       <DescriptiveTitle>
         Clique abaixo para realizar o pagamento:
@@ -93,7 +94,7 @@ function CheckoutPage() {
         </NavigateButton>
 
         <NavigateButton onClick={handlePayment}>
-          Continuar para pagamento 💳
+          Continuar pagamento 💳
         </NavigateButton>
       </div>
 

@@ -1,5 +1,6 @@
 // src/pages/SalesPage/SalesPage.jsx
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "../Pages.module.css";
 
 import HeaderQuiz from "../../components/Headers/HeaderQuiz";
@@ -15,6 +16,7 @@ import { api } from "../../services/api";
 function SalesPage({ onRestartQuiz }) {
   const [dados, setDados] = useState({});
   const preco = 1;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("quizUserData") || "{}");
@@ -28,37 +30,12 @@ function SalesPage({ onRestartQuiz }) {
       ? dados.objective.nome
       : dados.objective;
 
-  const dieta =
-    typeof dados.diet === "object"
-      ? dados.diet.nome
-      : dados.diet;
+  const dieta = typeof dados.diet === "object" ? dados.diet.nome : dados.diet;
 
   // 🔥 Ao clicar para comprar
-
-const handleGoToCheckout = async () => {
-  try {
-    const payload = {
-      planName: "Plano Padrão Nutrifacil 30 dias",
-      amount: preco,
-    };
-
-    const res = await api.post("/checkout/start", payload);
-
-    if (!res?.paymentLink) {
-      alert("Erro inesperado ao gerar link de pagamento.");
-      return;
-    }
-
-    // redireciona
-    window.location.href = res.paymentLink;
-
-  } catch (e) {
-    console.error("Erro ao iniciar checkout:", e);
-    alert("Erro ao redirecionar para pagamento.");
-  }
-};
-
-
+  const handleGoToCheckout = () => {
+    navigate("/checkout");
+  };
 
   const handleRestart = () => {
     localStorage.removeItem("quizUserData");
@@ -94,9 +71,7 @@ const handleGoToCheckout = async () => {
         Refazer o quiz do começo
       </AboutText>
 
-      <FooterQuiz>
-        Todos os direitos Reservados | NutriFácil™
-      </FooterQuiz>
+      <FooterQuiz>Todos os direitos Reservados | NutriFácil™</FooterQuiz>
     </div>
   );
 }
