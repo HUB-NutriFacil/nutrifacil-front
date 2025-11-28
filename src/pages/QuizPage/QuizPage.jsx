@@ -1,6 +1,7 @@
 // src/pages/QuizPage.jsx
 import { useState, useEffect } from "react";
 import styles from "../Pages.module.css";
+import { useNavigate } from "react-router-dom"; // <-- IMPORTANTE
 
 import HeaderQuiz from "../../components/Headers/HeaderQuiz";
 import FooterQuiz from "../../components/Footers/FooterQuiz";
@@ -31,6 +32,7 @@ const quizSteps = [
 ];
 
 function QuizPage({ onFinish }) {
+
   const [userData, setUserData] = useState(() => {
     const saved = localStorage.getItem("quizUserData");
     return saved ? JSON.parse(saved) : {};
@@ -40,6 +42,8 @@ function QuizPage({ onFinish }) {
     const savedStep = localStorage.getItem("quizCurrentStep");
     return savedStep !== null ? parseInt(savedStep, 10) : 0;
   });
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     localStorage.setItem("quizCurrentStep", currentStep);
@@ -62,11 +66,9 @@ function QuizPage({ onFinish }) {
     const isLastStep = currentStep === quizSteps.length - 1;
 
     if (isLastStep) {
-      // Chama a função passada pelo App.jsx
-      if (onFinish) onFinish();
-      return;
-    }
-
+    navigate("/sales"); // ⏩ Vai para a página de compras
+    return;
+  }
     // Avança para o próximo step normalmente
     setCurrentStep((prev) => prev + 1);
   };

@@ -1,6 +1,6 @@
 // src/features/quiz/pages/CheckoutPage.jsx
 import { useEffect, useState } from "react";
-import { startCheckout } from "../../services/checkoutApi";
+import { startCheckout } from "../../services/checkout";
 import { useNavigate } from "react-router-dom";
 
 import styles from "./CheckoutPage.module.css";
@@ -64,32 +64,30 @@ function CheckoutPage({ onBackToSales }) {
   };
 
   // 🚀 Novo handle que chama o backend
-  const handleGeneratePlan = async () => {
-    if (!validateForm()) return;
+const handleGeneratePlan = async () => {
+  if (!validateForm()) return;
 
-    const updatedData = { ...dados, ...form };
-    localStorage.setItem("quizUserData", JSON.stringify(updatedData));
+  const updatedData = { ...dados, ...form };
+  localStorage.setItem("quizUserData", JSON.stringify(updatedData));
 
-    try {
-      setLoading(true);
+  setLoading(true);
 
-      const result = await startCheckout({
-        planName: "Plano NutriFácil",
-        amount: 3999, // 39,99 (centavos)
-        email: updatedData.email,
-        quizData: updatedData, // VAI PARA METADATA
-      });
+  // 1️⃣ Salva quiz antes
+  await api.post("/checkout/save-quiz", {
+    userId: 1, // substituir pelo user real se houver auth
+    quizData: updatedData
+  });
 
-      if (result.checkoutUrl) {
-        window.location.href = result.checkoutUrl; // redireciona ao Pagar.me
-      }
-    } catch (error) {
-      alert("Erro ao iniciar checkout");
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // 2️⃣ Cria pagamento
+  const result = await startCheckout({
+    planName: "Plano NutriFácil",
+    amount: 39.99,
+    email: updatedData.email,
+  });
+
+  window.location.href = result.paymentLink;
+};
+
 
   return (
     <div className={styles.container}>
