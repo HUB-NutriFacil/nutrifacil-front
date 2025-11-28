@@ -41,7 +41,8 @@ function SalesPage({ onRestartQuiz }) {
     localStorage.removeItem("quizUserData");
     localStorage.removeItem("quizCurrentStep");
     localStorage.removeItem("quizFinished");
-    onRestartQuiz && onRestartQuiz();
+    console.log("olaa")
+    navigate("/");
   };
 
   return (

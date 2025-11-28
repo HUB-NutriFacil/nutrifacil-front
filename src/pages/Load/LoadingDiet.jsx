@@ -1,53 +1,43 @@
-// src/pages/Load/LoadingDiet.jsx
 import { useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { OrbitProgress } from "react-loading-indicators";
 import { api } from "../../services/api";
 import styles from "./LoadingDiet.module.css";
 
 export default function LoadingDiet() {
-  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  // ID do PaymentLink (pl_xxx)
-  const paymentLinkId = searchParams.get("tid");
-
   useEffect(() => {
-    if (!paymentLinkId) return;
+    const quiz = JSON.parse(localStorage.getItem("quizUserData"));
+    const name = localStorage.getItem("name") || "Cliente";
 
-    const timer = setInterval(async () => {
+    if (!quiz) {
+      console.error("❌ Nenhum quiz encontrado!");
+      return;
+    }
+
+    const generate = async () => {
       try {
-        const { data } = await api.get(`/checkout/status/${paymentLinkId}`);
+        console.log("🧠 Enviando dados para gerar dieta...");
 
-        console.log("📡 Polling status:", data);
+        const gen = await api.post("/checkout/generate-with-data", {
+          name,
+          quiz
+        });
 
-        // Backend ainda não recebeu o webhook
-        if (data.status === "waiting") {
-          console.log("⚠ Aguardando webhook do Pagar.me...");
-          return;
-        }
+        console.log("📄 PDF gerado:", gen);
 
-        // Pagamento já reconhecido, mas PDF ainda está sendo gerado
-        if (data.status === "pending") {
-          console.log("⏳ PDF ainda em geração...");
-          return;
-        }
+        navigate("/plan-ready", {
+          state: { pdfUrl: gen.pdfUrl }
+        });
 
-        // TUDO PRONTO — dietFlow terminou!
-        if (data.status === "done") {
-          clearInterval(timer);
-
-          navigate("/plan-ready", {
-            state: { pdfUrl: data.pdfUrl },
-          });
-        }
       } catch (err) {
-        console.error("❌ Erro no polling:", err);
+        console.error("❌ Erro ao gerar dieta:", err);
       }
-    }, 3000);
+    };
 
-    return () => clearInterval(timer);
-  }, [paymentLinkId, navigate]);
+    generate();
+  }, [navigate]);
 
   return (
     <div className={styles.container}>
