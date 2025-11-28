@@ -60,7 +60,7 @@ function CheckoutPage() {
 
     try {
       // 1️⃣ Salva quiz no backend
-      await api.post("/quiz/save", {
+      await api.post("/checkout/save-quiz", {
         userId: 1, // placeholder até autenticarmos
         quizData,
       });

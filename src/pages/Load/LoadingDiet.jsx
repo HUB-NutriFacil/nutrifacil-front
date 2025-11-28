@@ -17,6 +17,7 @@ export default function LoadingDiet() {
     const timer = setInterval(async () => {
       try {
         const { data } = await api.get(`/checkout/status/${transactionId}`);
+        const transactionId = localStorage.getItem("transactionId");
 
         if (data.status === "done") {
           clearInterval(timer);
