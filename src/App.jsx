@@ -1,8 +1,10 @@
 // src/App.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import QuizPage from "./pages/QuizPage/QuizPage";
 import SalesPage from "./pages/SalesPage/SalesPage";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
+import LoadingDiet from "./pages/Load/LoadingDiet";
+import PlanReady from "./pages/PlanReady/PlanReady";
 
 function App() {
   const [currentPage, setCurrentPage] = useState(() => {
@@ -16,10 +18,21 @@ function App() {
     setCurrentPage("sales");
   };
 
-  const handleRestartQuiz = () => {
-    localStorage.removeItem("quizFinished");
-    setCurrentPage("quiz");
-  };
+  // ============================================================
+  // 🛠️ Painel Oculto — debugGo("sales"), debugGo("loading")...
+  // ============================================================
+  useEffect(() => {
+    window.__setPage = setCurrentPage;
+
+    window.debugGo = (page) => {
+      console.log(`🔍 [debugGo] Mudando para: ${page}`);
+      if (typeof window.__setPage === "function") {
+        window.__setPage(page);
+      } else {
+        console.warn("⚠️ setPage não está acessível ainda.");
+      }
+    };
+  }, []);
 
   return (
     <div className="App">
@@ -27,22 +40,27 @@ function App() {
 
       {currentPage === "sales" && (
         <SalesPage
-          onRestartQuiz={handleRestartQuiz}
-          onGoToCheckout={() => setCurrentPage("checkout")} 
+          onRestartQuiz={() => setCurrentPage("quiz")}
+          onGoToCheckout={() => setCurrentPage("checkout")}
         />
       )}
 
       {currentPage === "checkout" && (
-        <CheckoutPage onBackToSales={() => setCurrentPage("sales")} />
+        <CheckoutPage
+          onBackToSales={() => setCurrentPage("sales")}
+          onPaymentStart={() => setCurrentPage("loading")}
+        />
+      )}
+
+      {currentPage === "loading" && (
+        <LoadingDiet onReady={() => setCurrentPage("plan-ready")} />
+      )}
+
+      {currentPage === "plan-ready" && (
+        <PlanReady onFinish={() => setCurrentPage("sales")} />
       )}
     </div>
   );
 }
 
 export default App;
-
-// 20/10/2025
-// Adicionada navegação entre Quiz, Sales e Checkout pages.
-// --------------------------------------------
-// Controla o fluxo completo do usuário até o pagamento, sem reload.
-// by: gabbu (github: gabriellesote)

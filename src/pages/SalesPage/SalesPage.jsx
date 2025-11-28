@@ -14,7 +14,7 @@ import { api } from "../../services/api";
 
 function SalesPage({ onRestartQuiz }) {
   const [dados, setDados] = useState({});
-  const preco = 39.99;
+  const preco = 1;
 
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("quizUserData") || "{}");

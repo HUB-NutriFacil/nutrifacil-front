@@ -1,6 +1,10 @@
 // src/pages/PlanReady/PlanReady.jsx
 import { useLocation } from "react-router-dom";
 import styles from "./PlanReady.module.css";
+import Icon from "../../components/Ui/Icon/Icon";
+import iconStyle from "../../components/Ui/Icon/Icon.module.css";
+
+import HeaderQuiz from "../../components/Headers/HeaderQuiz";
 
 export default function PlanReady() {
   const location = useLocation();
@@ -23,15 +27,22 @@ export default function PlanReady() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Plano Gerado com Sucesso!</h1>
+   <HeaderQuiz variant="planReady" />
 
-      <p className={styles.text}>
-        Clique no botão abaixo para baixar e receber no seu e-mail e WhatsApp:
-      </p>
 
-      <button className={styles.button} onClick={handleDownload}>
-        Baixar Plano + Enviar por Email & WhatsApp
-      </button>
+ 
+
+      <div className={styles.square}>
+        <h1 className={styles.title}>Plano Gerado com Sucesso!</h1>
+
+        <p className={styles.text}>
+          Clique no botão abaixo para baixar e receber no seu e-mail:
+        </p>
+
+        <button className={styles.button} onClick={handleDownload}>
+          Baixar Plano + Enviar por Email 
+        </button>
+      </div>
     </div>
   );
 }

@@ -17,3 +17,13 @@
     margin-top: 20px;
 }
 
+
+
+/* VARIANTS */
+/* Plan Ready → destaque elegante, não exagerado */
+.headerVariant__planReady {
+  background-color: #ffffff;
+
+  height: 100px;
+  transition: all 0.2s ease-in-out;
+}
